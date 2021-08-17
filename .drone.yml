@@ -70,6 +70,7 @@ steps:
       - cd  ./
       - npm install
       - npm run build
+      - ls
 
   - name: 构建镜像&PUSH镜像到Hub(UAT).
     image: plugins/docker
