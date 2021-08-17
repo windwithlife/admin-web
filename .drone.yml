@@ -40,7 +40,7 @@ steps:
       soa_gateway: www.koudaibook.com
       soa_gateway_cert: api-koudaibook-cert
       soa_path: /iot-admin
-      build_tag: latest
+      build_tag: build-${DRONE_BUILD_NUMBER}
 
 
 volumes:
@@ -86,6 +86,7 @@ steps:
         - ${DRONE_TAG=latest}
         - build-${DRONE_BUILD_NUMBER}
 
+
   - name: 部署到K3S集群-(UAT)
     image: bh90210/dron8s:latest
     settings:
@@ -97,7 +98,7 @@ steps:
       soa_gateway: www.zhangyongqiao.com
       soa_gateway_cert: api-koudaibook-cert
       soa_path: /iot-admin
-      build_tag: latest
+      build_tag: build-${DRONE_BUILD_NUMBER}
 
 volumes:
   - name: mvncache
