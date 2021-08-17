@@ -12,7 +12,7 @@ export default [
             component: './user/Login',
           },
           {
-            name: 'login-test',
+            name: '测试页',
             icon: 'crown',
             path: '/user/new',
             component: './newPage',
