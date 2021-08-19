@@ -11,7 +11,6 @@ export default [
             path: '/user/login',
             component: './user/Login',
           },
-         
         ],
       },
       {
@@ -30,15 +29,59 @@ export default [
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
-    component: './Admin',
     routes: [
       {
-        path: '/admin/sub-page',
-        name: 'developer-doc',
+        path: '/admin/user',
+        name: 'user-admin',
         icon: 'smile',
         component: './Welcome',
       },
-     
+      {
+        path: '/admin/role',
+        name: 'role-admin',
+        icon: 'smile',
+        component: './Welcome',
+      },
+      {
+        path: '/admin/permission',
+        name: 'permission-admin',
+        icon: 'smile',
+        component: './Welcome',
+      },
+      {
+        component: './404',
+      },
+    ],
+  },
+  {
+    path: '/cms',
+    name: 'cms',
+    icon: 'crown',
+    routes: [
+      {
+        path: '/cms/category',
+        name: 'cms-category',
+        icon: 'smile',
+        component: './cms/category',
+      },
+      {
+        path: '/cms/tag',
+        name: 'cms-tag',
+        icon: 'smile',
+        component: './cms/tag',
+      },
+      {
+        path: '/cms/image-text',
+        name: 'image-text',
+        icon: 'smile',
+        component: './cms/image-text',
+      },
+      {
+        path: '/cms/rich-text',
+        name: 'rich-text',
+        icon: 'smile',
+        component: './cms/rich-text',
+      },
       {
         component: './404',
       },
@@ -67,8 +110,7 @@ export default [
     path: '/docs',
     name: 'docs',
     icon: 'crown',
-    access: 'canAdmin',
-    component: './Admin',
+    
     routes: [
       {
         path: '/docs/api',
@@ -80,14 +122,9 @@ export default [
         path: '/docs/framework',
         name: 'docs-framework',
         icon: 'smile',
-        component: './Welcome',
+        component: './docs/framework-page',
       },
-      {
-        path: '/~docs',
-        name: 'docs-framework',
-        icon: 'smile',
-        component: './Welcome',
-      },
+      
       {
         component: './404',
       },

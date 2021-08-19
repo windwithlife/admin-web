@@ -2,9 +2,19 @@ export default {
   'menu.welcome': '欢迎',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
-  'menu.admin': '管理页',
+  'menu.admin': '帐户管理',
   'menu.admin.sub-page': '二级管理页',
+
+  'menu.admin.user-admin': '用户管理',
+  'menu.admin.role-admin': '角色管理',
+  'menu.admin.permission-admin': '权限管理',
   'menu.admin.developer-doc': '开发文档',
+
+  'menu.cms': '内容信息管理',
+  'menu.cms.cms-category': '内容分类',
+  'menu.cms.cms-tag': '内容标签',
+  'menu.cms.image-text': '图文',
+  'menu.cms.rich-text': '富文本',
 
   'menu.docs': '开发文档管理',
   'menu.docs.docs-api': 'API开发文档',
