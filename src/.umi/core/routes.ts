@@ -73,7 +73,7 @@ export function getRoutes() {
               "locale": "en-US",
               "order": null,
               "filePath": "README.md",
-              "updatedTime": 1629198968000,
+              "updatedTime": 1629338803000,
               "componentName": "admin-web",
               "slugs": [
                 {
@@ -127,7 +127,7 @@ export function getRoutes() {
             "exact": true,
             "meta": {
               "filePath": "src/components/index.md",
-              "updatedTime": 1629198968000,
+              "updatedTime": 1629338803000,
               "title": "业务组件",
               "sidemenu": true,
               "slugs": [
@@ -272,7 +272,7 @@ export function getRoutes() {
             "path": "/docs/api",
             "name": "docs-api",
             "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__docs__api-page' */'/Users/ctrip/code/iot/admin-web/src/pages/docs/api-page'), loading: LoadingComponent}),
             "exact": true
           },
           {

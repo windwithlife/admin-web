@@ -74,7 +74,7 @@ export default [
         path: '/docs/api',
         name: 'docs-api',
         icon: 'smile',
-        component: './Welcome',
+        component: './docs/api-page',
       },
       {
         path: '/docs/framework',
