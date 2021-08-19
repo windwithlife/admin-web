@@ -242,6 +242,60 @@ export function getRoutes() {
         ]
       },
       {
+        "path": "/ops",
+        "name": "ops",
+        "icon": "crown",
+        "access": "canAdmin",
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Admin' */'/Users/ctrip/code/iot/admin-web/src/pages/Admin'), loading: LoadingComponent}),
+        "routes": [
+          {
+            "path": "/ops/logs",
+            "name": "logs",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
+            "exact": true
+          }
+        ]
+      },
+      {
+        "path": "/docs",
+        "name": "docs",
+        "icon": "crown",
+        "access": "canAdmin",
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Admin' */'/Users/ctrip/code/iot/admin-web/src/pages/Admin'), loading: LoadingComponent}),
+        "routes": [
+          {
+            "path": "/docs/api",
+            "name": "docs-api",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "path": "/docs/framework",
+            "name": "docs-framework",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "path": "/~docs",
+            "name": "docs-framework",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
+            "exact": true
+          }
+        ]
+      },
+      {
         "name": "list.table-list",
         "icon": "table",
         "path": "/list",

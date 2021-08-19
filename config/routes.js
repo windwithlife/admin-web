@@ -45,6 +45,55 @@ export default [
     ],
   },
   {
+    path: '/ops',
+    name: 'ops',
+    icon: 'crown',
+    access: 'canAdmin',
+    component: './Admin',
+    routes: [
+      {
+        path: '/ops/logs',
+        name: 'logs',
+        icon: 'smile',
+        component: './Welcome',
+      },
+     
+      {
+        component: './404',
+      },
+    ],
+  },
+  {
+    path: '/docs',
+    name: 'docs',
+    icon: 'crown',
+    access: 'canAdmin',
+    component: './Admin',
+    routes: [
+      {
+        path: '/docs/api',
+        name: 'docs-api',
+        icon: 'smile',
+        component: './Welcome',
+      },
+      {
+        path: '/docs/framework',
+        name: 'docs-framework',
+        icon: 'smile',
+        component: './Welcome',
+      },
+      {
+        path: '/~docs',
+        name: 'docs-framework',
+        icon: 'smile',
+        component: './Welcome',
+      },
+      {
+        component: './404',
+      },
+    ],
+  },
+  {
     name: 'list.table-list',
     icon: 'table',
     path: '/list',

@@ -5,6 +5,14 @@ export default {
   'menu.admin': '管理页',
   'menu.admin.sub-page': '二级管理页',
   'menu.admin.developer-doc': '开发文档',
+
+  'menu.docs': '开发文档管理',
+  'menu.docs.docs-api': 'API开发文档',
+  'menu.docs.docs-framework': '框架开发文档',
+
+  'menu.ops': '运维模块',
+  'menu.ops.logs': '日志',
+
   'menu.login': '登录',
   'menu.register': '注册',
   'menu.register-result': '注册结果',
