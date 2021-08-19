@@ -34,7 +34,7 @@ export default [
     routes: [
       {
         path: '/admin/sub-page',
-        name: 'sub-page',
+        name: 'developer-doc',
         icon: 'smile',
         component: './Welcome',
       },

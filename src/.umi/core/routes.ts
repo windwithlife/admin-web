@@ -78,48 +78,48 @@ export function getRoutes() {
               "slugs": [
                 {
                   "depth": 1,
-                  "value": "Ant Design Pro",
-                  "heading": "ant-design-pro"
+                  "value": "框架的使用",
+                  "heading": "框架的使用"
                 },
                 {
                   "depth": 2,
-                  "value": "Environment Prepare",
-                  "heading": "environment-prepare"
+                  "value": "环境准备",
+                  "heading": "环境准备"
                 },
                 {
                   "depth": 2,
-                  "value": "Provided Scripts",
-                  "heading": "provided-scripts"
+                  "value": "Scripts配置",
+                  "heading": "scripts配置"
                 },
                 {
                   "depth": 3,
-                  "value": "Start project",
-                  "heading": "start-project"
+                  "value": "启动（本地）",
+                  "heading": "启动（本地）"
                 },
                 {
                   "depth": 3,
-                  "value": "Build project",
-                  "heading": "build-project"
+                  "value": "构建项目",
+                  "heading": "构建项目"
                 },
                 {
                   "depth": 3,
-                  "value": "Check code style",
-                  "heading": "check-code-style"
+                  "value": "代码检查",
+                  "heading": "代码检查"
                 },
                 {
                   "depth": 3,
-                  "value": "Test code",
-                  "heading": "test-code"
+                  "value": "执行测试",
+                  "heading": "执行测试"
                 },
                 {
                   "depth": 2,
-                  "value": "More",
-                  "heading": "more"
+                  "value": "更多",
+                  "heading": "更多"
                 }
               ],
-              "title": "Ant Design Pro"
+              "title": "框架的使用"
             },
-            "title": "Ant Design Pro"
+            "title": "框架的使用"
           },
           {
             "path": "/~docs/components",
@@ -129,7 +129,7 @@ export function getRoutes() {
               "filePath": "src/components/index.md",
               "updatedTime": 1629198968000,
               "title": "业务组件",
-              "sidemenu": false,
+              "sidemenu": true,
               "slugs": [
                 {
                   "depth": 1,
@@ -230,7 +230,7 @@ export function getRoutes() {
         "routes": [
           {
             "path": "/admin/sub-page",
-            "name": "sub-page",
+            "name": "developer-doc",
             "icon": "smile",
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
             "exact": true

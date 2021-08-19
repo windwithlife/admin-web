@@ -7,7 +7,7 @@ const Settings = {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'SMART IOT PLATFORM',
+  title: '统一管理后台',
   pwa: false,
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   iconfontUrl: '',

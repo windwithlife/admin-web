@@ -66,10 +66,15 @@ export const layout = ({ initialState }) => {
           </Link>,
           <Link to="/~docs">
             <BookOutlined />
-            <span>业务组件文档</span>
+            <span>当前业务组件文档</span>
           </Link>,
         ]
-      : [],
+      : [
+      <Link to="/~docs">
+      <BookOutlined />
+        <span>当前业务组件文档</span>
+      </Link>,
+    ],
     menuHeaderRender: undefined,
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,

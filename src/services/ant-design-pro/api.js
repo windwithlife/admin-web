@@ -6,7 +6,7 @@ import { request } from 'umi';
 console.log("test-----------" + "${BASE_PATH}");
 let BASE_PATH = "/admin-web";
 export async function currentUser(options) {
-  return request('/api/currentUser', {
+  return request(BASE_PATH + '/api/currentUser', {
     method: 'GET',
     ...(options || {}),
   });
