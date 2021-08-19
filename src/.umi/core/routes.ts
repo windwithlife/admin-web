@@ -314,6 +314,31 @@ export function getRoutes() {
         ]
       },
       {
+        "path": "/device",
+        "name": "device",
+        "icon": "crown",
+        "routes": [
+          {
+            "path": "/device/status",
+            "name": "status",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__device__status' */'/Users/ctrip/code/iot/admin-web/src/pages/device/status'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "path": "/device/alert",
+            "name": "alert",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__device__alert' */'/Users/ctrip/code/iot/admin-web/src/pages/device/alert'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
+            "exact": true
+          }
+        ]
+      },
+      {
         "path": "/docs",
         "name": "docs",
         "icon": "crown",
@@ -337,13 +362,6 @@ export function getRoutes() {
             "exact": true
           }
         ]
-      },
-      {
-        "name": "list.table-list",
-        "icon": "table",
-        "path": "/list",
-        "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__TableList' */'/Users/ctrip/code/iot/admin-web/src/pages/TableList'), loading: LoadingComponent}),
-        "exact": true
       },
       {
         "path": "/index.html",

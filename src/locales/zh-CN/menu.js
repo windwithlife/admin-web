@@ -16,6 +16,10 @@ export default {
   'menu.cms.image-text': '图文',
   'menu.cms.rich-text': '富文本',
 
+  'menu.device': '设备管理',
+  'menu.device.status': '设备状态',
+  'menu.device.alert': '设备告警',
+ 
   'menu.docs': '开发文档管理',
   'menu.docs.docs-api': 'API开发文档',
   'menu.docs.docs-framework': '框架开发文档',

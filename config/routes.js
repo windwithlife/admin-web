@@ -106,6 +106,30 @@ export default [
       },
     ],
   },
+ 
+  {
+    path: '/device',
+    name: 'device',
+    icon: 'crown',
+    routes: [
+      {
+        path: '/device/status',
+        name: 'status',
+        icon: 'smile',
+        component: './device/status',
+      },
+      {
+        path: '/device/alert',
+        name: 'alert',
+        icon: 'smile',
+        component: './device/alert',
+      },
+      
+      {
+        component: './404',
+      },
+    ],
+  },
   {
     path: '/docs',
     name: 'docs',
@@ -129,12 +153,6 @@ export default [
         component: './404',
       },
     ],
-  },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
   },
   {
     path: '/',
