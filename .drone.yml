@@ -35,11 +35,11 @@ steps:
       yaml: ./release/prod/deployment.yaml
       kubeconfig:
         from_secret: kubeconfig
-      app_name: iot-admin
+      app_name: admin-web
       image_name: ccr.ccs.tencentyun.com/windwithlife/iot-admin
       soa_gateway: www.koudaibook.com
       soa_gateway_cert: api-koudaibook-cert
-      soa_path: /iot-admin
+      soa_path: /admin-web
       build_tag: build-${DRONE_BUILD_NUMBER}
 
 
@@ -94,11 +94,11 @@ steps:
       yaml: ./release/prod/deployment.yaml
       kubeconfig:
         from_secret: kubeconfig
-      app_name: iot-admin
+      app_name: admin-web
       image_name: ccr.ccs.tencentyun.com/windwithlife/iot-admin
       soa_gateway: www.zhangyongqiao.com
       soa_gateway_cert: api-koudaibook-cert
-      soa_path: /iot-admin
+      soa_path: /admin-web
       build_tag: build-${DRONE_BUILD_NUMBER}
 
 volumes:

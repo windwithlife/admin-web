@@ -2,7 +2,7 @@
 import { createBrowserHistory, History } from '/Users/ctrip/code/iot/admin-web/node_modules/@umijs/runtime';
 
 let options = {
-  "basename": "/iot-admin/"
+  "basename": "/admin-web/"
 };
 if ((<any>window).routerBase) {
   options.basename = (<any>window).routerBase;

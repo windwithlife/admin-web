@@ -8,6 +8,13 @@
  */
 export default {
   dev: {
+    '/admin-web/api/': {
+      target: 'https://preview.pro.ant.design',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/admin-web': '',
+      },
+    },
     '/api/': {
       target: 'https://preview.pro.ant.design',
       changeOrigin: true,

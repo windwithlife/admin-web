@@ -6,8 +6,13 @@ import proxy from './proxy';
 import routes from './routes';
 const { REACT_APP_ENV } = process.env;
 export default defineConfig({
-  base: '/iot-admin/',
-  publicPath: '/iot-admin/',
+  base: '/admin-web/',
+  publicPath: '/admin-web/',
+  define: {
+    API_URL: 'https://api.zhangyongqiao.com', // API地址
+    BASE_PATH: '/admin-web', // API 服务PATH
+    API_SECRET_KEY: 'XXXXXXXXXXXXXXXX', // API调用密钥
+  },
   hash: true,
   antd: {},
   dva: {

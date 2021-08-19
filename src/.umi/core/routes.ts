@@ -73,7 +73,7 @@ export function getRoutes() {
               "locale": "en-US",
               "order": null,
               "filePath": "README.md",
-              "updatedTime": 1629113384925,
+              "updatedTime": 1629198968000,
               "componentName": "admin-web",
               "slugs": [
                 {
@@ -127,7 +127,7 @@ export function getRoutes() {
             "exact": true,
             "meta": {
               "filePath": "src/components/index.md",
-              "updatedTime": 1629113383038,
+              "updatedTime": 1629198968000,
               "title": "业务组件",
               "sidemenu": false,
               "slugs": [
@@ -205,13 +205,6 @@ export function getRoutes() {
                 "path": "/user/login",
                 "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__user__Login' */'/Users/ctrip/code/iot/admin-web/src/pages/user/Login'), loading: LoadingComponent}),
                 "exact": true
-              },
-              {
-                "name": "login-test",
-                "icon": "crown",
-                "path": "/user/new",
-                "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__newPage' */'/Users/ctrip/code/iot/admin-web/src/pages/newPage'), loading: LoadingComponent}),
-                "exact": true
               }
             ]
           },
@@ -240,13 +233,6 @@ export function getRoutes() {
             "name": "sub-page",
             "icon": "smile",
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
-            "exact": true
-          },
-          {
-            "name": "login-test",
-            "icon": "crown",
-            "path": "/admin/new",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__newPage' */'/Users/ctrip/code/iot/admin-web/src/pages/newPage'), loading: LoadingComponent}),
             "exact": true
           },
           {
