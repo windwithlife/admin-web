@@ -8,9 +8,6 @@ import { ModalForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import UpdateForm from './components/UpdateForm';
 import { rule, addRule, updateRule, removeRule } from '@/services/ant-design-pro/api';
-import DeviceModel from '@/models/device';
-
-
 /**
  * @en-US Add node
  * @zh-CN 添加节点
@@ -105,48 +102,79 @@ const TableList = () => {
   const intl = useIntl();
   const columns = [
     {
-      title: <FormattedMessage id="pages.table.titleId" defaultMessage="Description" />,
-      dataIndex: 'id',
+      title: (
+        <FormattedMessage
+          id="pages.searchTable.updateForm.ruleName.nameLabel"
+          defaultMessage="Rule name"
+        />
+      ),
+      dataIndex: 'name',
+      tip: 'The rule name is the unique key',
+      render: (dom, entity) => {
+        return (
+          <a
+            onClick={() => {
+              setCurrentRow(entity);
+              setShowDetail(true);
+            }}
+          >
+            {dom}
+          </a>
+        );
+      },
+    },
+    {
+      title: <FormattedMessage id="pages.searchTable.titleDesc" defaultMessage="Description" />,
+      dataIndex: 'desc',
       valueType: 'textarea',
     },
-    
     {
-      title: <FormattedMessage id="pages.table.titleName" defaultMessage="Description" />,
-      dataIndex: 'nickName',
-      valueType: 'textarea',
+      title: (
+        <FormattedMessage
+          id="pages.searchTable.titleCallNo"
+          defaultMessage="Number of service calls"
+        />
+      ),
+      dataIndex: 'callNo',
+      sorter: true,
+      hideInForm: true,
+      renderText: (val) =>
+        `${val}${intl.formatMessage({
+          id: 'pages.searchTable.tenThousand',
+          defaultMessage: ' 万 ',
+        })}`,
     },
-    
     {
-      title: <FormattedMessage id="pages.table.titleStatus" defaultMessage="Status" />,
+      title: <FormattedMessage id="pages.searchTable.titleStatus" defaultMessage="Status" />,
       dataIndex: 'status',
       hideInForm: true,
       valueEnum: {
         0: {
           text: (
             <FormattedMessage
-              id="pages.table.status.closed"
-              defaultMessage="配对成功状态"
+              id="pages.searchTable.nameStatus.default"
+              defaultMessage="Shut down"
             />
           ),
           status: 'Default',
         },
         1: {
           text: (
-            <FormattedMessage id="pages.table.status.running" defaultMessage="正常运行" />
+            <FormattedMessage id="pages.searchTable.nameStatus.running" defaultMessage="Running" />
           ),
           status: 'Processing',
         },
         2: {
           text: (
-            <FormattedMessage id="pages.table.status.online" defaultMessage="在线" />
+            <FormattedMessage id="pages.searchTable.nameStatus.online" defaultMessage="Online" />
           ),
           status: 'Success',
         },
         3: {
           text: (
             <FormattedMessage
-              id="pages.table.status.offline"
-              defaultMessage="异常"
+              id="pages.searchTable.nameStatus.abnormal"
+              defaultMessage="Abnormal"
             />
           ),
           status: 'Error',
@@ -156,12 +184,12 @@ const TableList = () => {
     {
       title: (
         <FormattedMessage
-          id="pages.table.createTime"
-          defaultMessage="创建时间"
+          id="pages.searchTable.titleUpdatedAt"
+          defaultMessage="Last scheduled time"
         />
       ),
       sorter: true,
-      dataIndex: 'createTime',
+      dataIndex: 'updatedAt',
       valueType: 'dateTime',
       renderFormItem: (item, { defaultRender, ...rest }, form) => {
         const status = form.getFieldValue('status');
@@ -186,20 +214,25 @@ const TableList = () => {
       },
     },
     {
-      title: <FormattedMessage id="pages.table.titleOperation" defaultMessage="Operating" />,
+      title: <FormattedMessage id="pages.searchTable.titleOption" defaultMessage="Operating" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
         <a
           key="config"
           onClick={() => {
+            handleUpdateModalVisible(true);
             setCurrentRow(record);
-            setShowDetail(true);
           }}
         >
-          <FormattedMessage id="pages.device.table.statusDetail" defaultMessage="异常详情" />
+          <FormattedMessage id="pages.searchTable.config" defaultMessage="Configuration" />
         </a>,
-       
+        <a key="subscribeAlert" href="https://procomponents.ant.design/">
+          <FormattedMessage
+            id="pages.searchTable.subscribeAlert"
+            defaultMessage="Subscribe to alerts"
+          />
+        </a>,
       ],
     },
   ];
@@ -207,29 +240,26 @@ const TableList = () => {
     <PageContainer>
       <ProTable
         headerTitle={intl.formatMessage({
-          id: 'pages.table.title',
-          defaultMessage: '平台异常设备:',
+          id: 'pages.searchTable.title',
+          defaultMessage: 'Enquiry form',
         })}
-
-        request={DeviceModel.findDevices}
-
         actionRef={actionRef}
         rowKey="key"
         search={{
           labelWidth: 120,
         }}
         toolBarRender={() => [
-          // <Button
-          //   type="primary"
-          //   key="primary"
-          //   onClick={() => {
-          //     handleModalVisible(true);
-          //   }}
-          // >
-          //   <PlusOutlined /> <FormattedMessage id="pages.searchTable.new" defaultMessage="New" />
-          // </Button>,
+          <Button
+            type="primary"
+            key="primary"
+            onClick={() => {
+              handleModalVisible(true);
+            }}
+          >
+            <PlusOutlined /> <FormattedMessage id="pages.searchTable.new" defaultMessage="New" />
+          </Button>,
         ]}
-        
+        request={rule}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
@@ -352,7 +382,7 @@ const TableList = () => {
         }}
         closable={false}
       >
-        {currentRow?.id && (
+        {currentRow?.name && (
           <ProDescriptions
             column={2}
             title={currentRow?.name}

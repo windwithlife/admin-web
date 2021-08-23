@@ -194,6 +194,13 @@ export function getRoutes() {
         "component": (props) => props.children
       },
       {
+        "path": "/welcome",
+        "name": "welcome",
+        "icon": "smile",
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+        "exact": true
+      },
+      {
         "path": "/user",
         "layout": false,
         "routes": [
@@ -215,41 +222,55 @@ export function getRoutes() {
         ]
       },
       {
-        "path": "/welcome",
-        "name": "welcome",
-        "icon": "smile",
-        "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
-        "exact": true
-      },
-      {
         "path": "/admin",
         "name": "admin",
-        "icon": "crown",
+        "icon": "user",
         "access": "canAdmin",
         "routes": [
           {
-            "path": "/admin/user",
-            "name": "user-admin",
+            "name": "settings",
             "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "path": "/admin/settings",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__settings' */'/Users/ctrip/code/iot/admin-web/src/pages/account/settings'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "path": "/admin/user",
+            "name": "system-user-admin",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__admin-user' */'/Users/ctrip/code/iot/admin-web/src/pages/account/admin-user'), loading: LoadingComponent}),
             "exact": true
           },
           {
             "path": "/admin/role",
             "name": "role-admin",
             "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__role' */'/Users/ctrip/code/iot/admin-web/src/pages/account/role'), loading: LoadingComponent}),
             "exact": true
           },
           {
             "path": "/admin/permission",
             "name": "permission-admin",
             "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__Welcome' */'/Users/ctrip/code/iot/admin-web/src/pages/Welcome'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__permission' */'/Users/ctrip/code/iot/admin-web/src/pages/account/permission'), loading: LoadingComponent}),
             "exact": true
           },
           {
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
+            "exact": true
+          }
+        ]
+      },
+      {
+        "path": "/menu",
+        "name": "menu",
+        "icon": "smile",
+        "routes": [
+          {
+            "path": "/menu/home",
+            "name": "home",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__menu__index' */'/Users/ctrip/code/iot/admin-web/src/pages/menu/index'), loading: LoadingComponent}),
             "exact": true
           }
         ]
@@ -271,6 +292,13 @@ export function getRoutes() {
             "name": "cms-tag",
             "icon": "smile",
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__tag' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/tag'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "path": "/cms/channel",
+            "name": "channel",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__channel' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/channel'), loading: LoadingComponent}),
             "exact": true
           },
           {
@@ -314,15 +342,40 @@ export function getRoutes() {
         ]
       },
       {
+        "path": "/gateway",
+        "name": "gateway",
+        "icon": "crown",
+        "routes": [
+          {
+            "path": "/gateway/home",
+            "name": "home",
+            "icon": "list",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__gateway__home' */'/Users/ctrip/code/iot/admin-web/src/pages/gateway/home'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "path": "/gateway/alert",
+            "name": "alert",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__gateway__alert' */'/Users/ctrip/code/iot/admin-web/src/pages/gateway/alert'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
+            "exact": true
+          }
+        ]
+      },
+      {
         "path": "/device",
         "name": "device",
         "icon": "crown",
         "routes": [
           {
-            "path": "/device/status",
+            "path": "/device/home",
             "name": "status",
             "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__device__status' */'/Users/ctrip/code/iot/admin-web/src/pages/device/status'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__device__home' */'/Users/ctrip/code/iot/admin-web/src/pages/device/home'), loading: LoadingComponent}),
             "exact": true
           },
           {

@@ -8,7 +8,8 @@ import { ModalForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import UpdateForm from './components/UpdateForm';
 import { rule, addRule, updateRule, removeRule } from '@/services/ant-design-pro/api';
-import DeviceModel from '@/models/device';
+
+import GatewayModel from '@/models/device';
 
 
 /**
@@ -105,17 +106,18 @@ const TableList = () => {
   const intl = useIntl();
   const columns = [
     {
-      title: <FormattedMessage id="pages.table.titleId" defaultMessage="Description" />,
+      title: <FormattedMessage id="pages.table.titleId" defaultMessage="ID" />,
       dataIndex: 'id',
       valueType: 'textarea',
     },
-    
+   
+  
     {
-      title: <FormattedMessage id="pages.table.titleName" defaultMessage="Description" />,
-      dataIndex: 'nickName',
+      title: <FormattedMessage id="pages.gateway.table.titleTopic" defaultMessage="MQTT-Topic" />,
+      dataIndex: 'locationTopic',
       valueType: 'textarea',
     },
-    
+  
     {
       title: <FormattedMessage id="pages.table.titleStatus" defaultMessage="Status" />,
       dataIndex: 'status',
@@ -124,32 +126,17 @@ const TableList = () => {
         0: {
           text: (
             <FormattedMessage
-              id="pages.table.status.closed"
-              defaultMessage="配对成功状态"
+              id="pages.table.status.error"
+              defaultMessage="异常"
             />
           ),
           status: 'Default',
         },
         1: {
           text: (
-            <FormattedMessage id="pages.table.status.running" defaultMessage="正常运行" />
+            <FormattedMessage id="pages.table.status.running" defaultMessage="正常" />
           ),
           status: 'Processing',
-        },
-        2: {
-          text: (
-            <FormattedMessage id="pages.table.status.online" defaultMessage="在线" />
-          ),
-          status: 'Success',
-        },
-        3: {
-          text: (
-            <FormattedMessage
-              id="pages.table.status.offline"
-              defaultMessage="异常"
-            />
-          ),
-          status: 'Error',
         },
       },
     },
@@ -157,11 +144,11 @@ const TableList = () => {
       title: (
         <FormattedMessage
           id="pages.table.createTime"
-          defaultMessage="创建时间"
+          defaultMessage="上报异常时间"
         />
       ),
       sorter: true,
-      dataIndex: 'createTime',
+      dataIndex: 'createDate',
       valueType: 'dateTime',
       renderFormItem: (item, { defaultRender, ...rest }, form) => {
         const status = form.getFieldValue('status');
@@ -197,7 +184,7 @@ const TableList = () => {
             setShowDetail(true);
           }}
         >
-          <FormattedMessage id="pages.device.table.statusDetail" defaultMessage="异常详情" />
+          <FormattedMessage id="pages.device.table.statusDetail" defaultMessage="详细异常" />
         </a>,
        
       ],
@@ -208,10 +195,10 @@ const TableList = () => {
       <ProTable
         headerTitle={intl.formatMessage({
           id: 'pages.table.title',
-          defaultMessage: '平台异常设备:',
+          defaultMessage: '所有平台设备列表',
         })}
 
-        request={DeviceModel.findDevices}
+        request={GatewayModel.queryAllGateways}
 
         actionRef={actionRef}
         rowKey="key"

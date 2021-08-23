@@ -105,17 +105,22 @@ const TableList = () => {
   const intl = useIntl();
   const columns = [
     {
-      title: <FormattedMessage id="pages.table.titleId" defaultMessage="Description" />,
+      title: <FormattedMessage id="pages.table.titleId" defaultMessage="ID" />,
       dataIndex: 'id',
       valueType: 'textarea',
     },
-    
     {
-      title: <FormattedMessage id="pages.table.titleName" defaultMessage="Description" />,
-      dataIndex: 'nickName',
+      title: <FormattedMessage id="pages.table.titleName" defaultMessage="名称" />,
+      dataIndex: 'name',
       valueType: 'textarea',
     },
-    
+  
+    {
+      title: <FormattedMessage id="pages.gateway.table.titleTopic" defaultMessage="MQTT-Topic" />,
+      dataIndex: 'locationTopic',
+      valueType: 'textarea',
+    },
+  
     {
       title: <FormattedMessage id="pages.table.titleStatus" defaultMessage="Status" />,
       dataIndex: 'status',
@@ -161,7 +166,7 @@ const TableList = () => {
         />
       ),
       sorter: true,
-      dataIndex: 'createTime',
+      dataIndex: 'createDate',
       valueType: 'dateTime',
       renderFormItem: (item, { defaultRender, ...rest }, form) => {
         const status = form.getFieldValue('status');
@@ -197,7 +202,7 @@ const TableList = () => {
             setShowDetail(true);
           }}
         >
-          <FormattedMessage id="pages.device.table.statusDetail" defaultMessage="异常详情" />
+          <FormattedMessage id="pages.device.table.statusDetail" defaultMessage="详细状态" />
         </a>,
        
       ],
@@ -208,10 +213,10 @@ const TableList = () => {
       <ProTable
         headerTitle={intl.formatMessage({
           id: 'pages.table.title',
-          defaultMessage: '平台异常设备:',
+          defaultMessage: '所有平台设备列表',
         })}
 
-        request={DeviceModel.findDevices}
+        request={DeviceModel.queryAllGateways}
 
         actionRef={actionRef}
         rowKey="key"

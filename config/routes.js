@@ -1,5 +1,11 @@
 export default [
   {
+    path: '/welcome',
+    name: 'welcome',
+    icon: 'smile',
+    component: './Welcome',
+  },
+  {
     path: '/user',
     layout: false,
     routes: [
@@ -18,38 +24,53 @@ export default [
       },
     ],
   },
-  {
-    path: '/welcome',
-    name: 'welcome',
-    icon: 'smile',
-    component: './Welcome',
-  },
+  
   {
     path: '/admin',
     name: 'admin',
-    icon: 'crown',
+    icon: 'user',
     access: 'canAdmin',
     routes: [
       {
-        path: '/admin/user',
-        name: 'user-admin',
+        name: 'settings',
         icon: 'smile',
-        component: './Welcome',
+        path: '/admin/settings',
+        component: './account/settings',
       },
+      {
+        path: '/admin/user',
+        name: 'system-user-admin',
+        icon: 'smile',
+        component: './account/admin-user',
+      },
+      
       {
         path: '/admin/role',
         name: 'role-admin',
         icon: 'smile',
-        component: './Welcome',
+        component: './account/role',
       },
       {
         path: '/admin/permission',
         name: 'permission-admin',
         icon: 'smile',
-        component: './Welcome',
+        component: './account/permission',
       },
       {
         component: './404',
+      },
+    ],
+  },
+  {
+    path: '/menu',
+    name: 'menu',
+    icon: 'smile',
+    routes: [
+      {
+        path: '/menu/home',
+        name: 'home',
+        icon: 'smile',
+        component: './menu/index',
       },
     ],
   },
@@ -69,6 +90,12 @@ export default [
         name: 'cms-tag',
         icon: 'smile',
         component: './cms/tag',
+      },
+      {
+        path: '/cms/channel',
+        name: 'channel',
+        icon: 'smile',
+        component: './cms/channel',
       },
       {
         path: '/cms/image-text',
@@ -106,17 +133,41 @@ export default [
       },
     ],
   },
- 
+  {
+    path: '/gateway',
+    name: 'gateway',
+    icon: 'crown',
+    routes: [
+      
+      {
+        path: '/gateway/home',
+        name: 'home',
+        icon: 'list',
+        component: './gateway/home',
+      },
+      {
+        path: '/gateway/alert',
+        name: 'alert',
+        icon: 'smile',
+        component: './gateway/alert',
+      },
+      
+      {
+        component: './404',
+      },
+    ],
+  },
   {
     path: '/device',
     name: 'device',
     icon: 'crown',
     routes: [
+      
       {
-        path: '/device/status',
+        path: '/device/home',
         name: 'status',
         icon: 'smile',
-        component: './device/status',
+        component: './device/home',
       },
       {
         path: '/device/alert',
@@ -130,6 +181,7 @@ export default [
       },
     ],
   },
+
   {
     path: '/docs',
     name: 'docs',
@@ -158,6 +210,7 @@ export default [
     path: '/',
     redirect: '/welcome',
   },
+ 
   {
     component: './404',
   },

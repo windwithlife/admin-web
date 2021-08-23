@@ -64,13 +64,13 @@ export const layout = ({ initialState }) => {
             <LinkOutlined />
             <span>OpenAPI 文档</span>
           </Link>,
-          <Link to="/~docs">
+          <Link to="/index.html">
             <BookOutlined />
             <span>当前业务组件文档</span>
           </Link>,
         ]
       : [
-      <Link to="/~docs">
+      <Link to="/index.html">
       <BookOutlined />
         <span>当前业务组件文档</span>
       </Link>,

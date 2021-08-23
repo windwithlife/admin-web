@@ -115,7 +115,11 @@ const TableList = () => {
       dataIndex: 'nickName',
       valueType: 'textarea',
     },
-    
+    {
+      title: <FormattedMessage id="pages.device.table.titleGateway" defaultMessage="所属网关" />,
+      dataIndex: 'gatewayId',
+      valueType: 'textarea',
+    },
     {
       title: <FormattedMessage id="pages.table.titleStatus" defaultMessage="Status" />,
       dataIndex: 'status',
@@ -197,7 +201,7 @@ const TableList = () => {
             setShowDetail(true);
           }}
         >
-          <FormattedMessage id="pages.device.table.statusDetail" defaultMessage="异常详情" />
+          <FormattedMessage id="pages.device.table.statusDetail" defaultMessage="详细状态" />
         </a>,
        
       ],
@@ -208,7 +212,7 @@ const TableList = () => {
       <ProTable
         headerTitle={intl.formatMessage({
           id: 'pages.table.title',
-          defaultMessage: '平台异常设备:',
+          defaultMessage: '所有平台设备列表',
         })}
 
         request={DeviceModel.findDevices}

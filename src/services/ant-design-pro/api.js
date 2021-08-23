@@ -5,8 +5,9 @@ import { request } from 'umi';
 /** 获取当前的用户 GET /api/currentUser */
 console.log("test-----------" + "${BASE_PATH}");
 let BASE_PATH = "/admin-web";
+
 export async function currentUser(options) {
-  return request(BASE_PATH + '/api/currentUser', {
+  return request('/api/currentUser', {
     method: 'GET',
     ...(options || {}),
   });
@@ -14,7 +15,7 @@ export async function currentUser(options) {
 /** 退出登录接口 POST /api/login/outLogin */
 
 export async function outLogin(options) {
-  return request(BASE_PATH + '/api/login/outLogin', {
+  return request('/api/login/outLogin', {
     method: 'POST',
     ...(options || {}),
   });
@@ -22,7 +23,7 @@ export async function outLogin(options) {
 /** 登录接口 POST /api/login/account */
 
 export async function login(body, options) {
-  return request(BASE_PATH + '/api/login/account', {
+  return request('/api/login/account', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ export async function login(body, options) {
 /** 此处后端没有提供注释 GET /api/notices */
 
 export async function getNotices(options) {
-  return request(BASE_PATH + '/api/notices', {
+  return request('/api/notices', {
     method: 'GET',
     ...(options || {}),
   });
@@ -42,7 +43,7 @@ export async function getNotices(options) {
 /** 获取规则列表 GET /api/rule */
 
 export async function rule(params, options) {
-  return request(BASE_PATH + '/api/rule', {
+  return request('/api/rule', {
     method: 'GET',
     params: { ...params },
     ...(options || {}),
@@ -51,7 +52,7 @@ export async function rule(params, options) {
 /** 新建规则 PUT /api/rule */
 
 export async function updateRule(options) {
-  return request(BASE_PATH + '/api/rule', {
+  return request('/api/rule', {
     method: 'PUT',
     ...(options || {}),
   });
@@ -59,7 +60,7 @@ export async function updateRule(options) {
 /** 新建规则 POST /api/rule */
 
 export async function addRule(options) {
-  return request(BASE_PATH + '/api/rule', {
+  return request('/api/rule', {
     method: 'POST',
     ...(options || {}),
   });
@@ -67,7 +68,7 @@ export async function addRule(options) {
 /** 删除规则 DELETE /api/rule */
 
 export async function removeRule(options) {
-  return request(BASE_PATH + '/api/rule', {
+  return request('/api/rule', {
     method: 'DELETE',
     ...(options || {}),
   });

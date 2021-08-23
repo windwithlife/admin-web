@@ -28,6 +28,43 @@ export default {
   'pages.welcome.alertMessage': '站点平台持续迭代演进中......',
   'pages.admin.subPage.title': ' 这个页面只有 admin 权限才能查看',
   'pages.admin.subPage.alertMessage': 'umi ui 现已发布，欢迎使用 npm run ui 启动体验。',
+
+  'pages.table.titleId': '编号ID',
+  'pages.table.titleName': '名称',
+  'pages.table.titleDesc': '描述说明',
+  'pages.table.titleStatus': '状态',
+  'pages.table.titleOperation': '操作',
+  'pages.table.titleNew': '新增',
+  'pages.table.titleAddNew': '新增',
+  'pages.table.titleUpdate': '修改',
+  'pages.table.config': '配置修改',
+  'pages.table.titleRemove': '删除',
+  'pages.table.item': '项',
+  'pages.table.remove': '删除',
+  'pages.table.update': '修改',
+  'pages.table.addNew': '新增',
+  'pages.table.Deletion': '删除',
+  'pages.table.batchDeletion': '批量删除',
+
+  'pages.roleTable.titleDomain': '域',
+  'pages.roleTable.title': '平台所有角色',
+  'pages.roleTable.titleName': '角色名',
+  'pages.roleTable.titleConfigDomain': '配置域名',
+  
+ 
+  'pages.permissionTable.title': '平台受控权限',
+  'pages.permissionTable.titleUrl': '权限URL',
+  'pages.permissionTable.titleMethod': '权限Method',
+
+  'pages.accountTable.titleDomain': '域',
+  'pages.accountTable.title': '系统管理用户列表',
+  'pages.accountTable.titleLoginName': '登录各',
+  'pages.accountTable.titleNickName': '昵称',
+  'pages.accountTable.titlePhoneNumber': '电话',
+  'pages.accountTable.titleEmail': '邮箱地址',
+  'pages.accountTable.titleConfigRole': '角色配置',
+  
+  
   'pages.searchTable.createForm.newRule': '新建规则',
   'pages.searchTable.updateForm.ruleConfig': '规则配置',
   'pages.searchTable.updateForm.basicConfig': '基本信息',
@@ -54,6 +91,7 @@ export default {
   'pages.searchTable.titleUpdatedAt': '上次调度时间',
   'pages.searchTable.exception': '请输入异常原因！',
   'pages.searchTable.titleOption': '操作',
+  
   'pages.searchTable.config': '配置',
   'pages.searchTable.subscribeAlert': '订阅警报',
   'pages.searchTable.title': '查询表格',
