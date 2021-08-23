@@ -43,9 +43,8 @@ const UpdateForm = (props) => {
     >
       <StepsForm.StepForm
         request={async () => ({
-          loginName: props.values.loginName,
-          nickName: props.values.nickName,
-          phoneNumber: props.values.phoneNumber,
+          name: props.values.name,
+          description: props.values.description,
         })}
         title={intl.formatMessage({
           id: 'pages.searchTable.updateForm.basicConfig',
@@ -53,10 +52,10 @@ const UpdateForm = (props) => {
         })}
       >
         <ProFormText
-          name="loginName"
+          name="name"
           label={intl.formatMessage({
-            id: 'pages.accountTable.titleLoginName',
-            defaultMessage: '角色名称',
+            id: 'pages.table.titleName',
+            defaultMessage: '权限名称',
           })}
           width="md"
           rules={[
@@ -64,79 +63,70 @@ const UpdateForm = (props) => {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pages.accountTable.updateForm.ruleName.loginNameRules"
-                  defaultMessage="登录名！"
+                  id="pages.searchTable.updateForm.ruleName.nameRules"
+                  defaultMessage="请输入权限名称！"
                 />
               ),
             },
           ]}
         />
-        <ProFormText
-          name="nickName"
-          label={intl.formatMessage({
-            id: 'pages.accountTable.titleNickName',
-            defaultMessage: '昵称',
-          })}
+        <ProFormTextArea
+          name="description"
           width="md"
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage
-                  id="pages.accountTable.updateForm.ruleName.nickNameRules"
-                  defaultMessage="请输入角色名称！"
-                />
-              ),
-            },
-          ]}
-        />
-        
-        <ProFormText
-          name="phoneNumber"
           label={intl.formatMessage({
-            id: 'pages.accountTable.titlePhoneNumber',
-            defaultMessage: '手机号码',
+            id: 'pages.table.titleDesc',
+            defaultMessage: '描述说明',
           })}
-          width="md"
-          
+          placeholder={intl.formatMessage({
+            id: 'pages.table.updateForm.ruleDesc.descPlaceholder',
+            defaultMessage: '请输入至少五个字符',
+          })}
+    
         />
-
       </StepsForm.StepForm>
 
       <StepsForm.StepForm
        
         request={async () => ({
-          domain: props.values.domain,
-          roles: props.values.roles,
+          url: props.values.url,
+          method: props.values.method,
         })}
         title={intl.formatMessage({
-          id: 'pages.accountTable.titleConfigRoles',
-          defaultMessage: '设置角色',
+          id: 'pages.permissionTable.titleConfigDetail',
+          defaultMessage: '设置权限',
         })}
       >
-       <ProFormSelect
-          name="roles"
+       <ProFormText
+          name="uri"
           label={intl.formatMessage({
-            id: 'pages.accountable.titleRole',
-            defaultMessage: '角色',
+            id: 'pages.permissionTable.titleUri',
+            defaultMessage: '权限名称',
           })}
           width="md"
-          valueEnum={{
-            admin: '管理员角色',
-            guest: '普通角色',
-            operator: '运维角色',
-          }}
+          rules={[
+            {
+              required: true,
+              message: (
+                <FormattedMessage
+                  id="pages.searchTable.updateForm.ruleName.nameRules"
+                  defaultMessage="请输入权限名称！"
+                />
+              ),
+            },
+          ]}
         />
         <ProFormSelect
-          name="domain"
+          name="method"
           label={intl.formatMessage({
-            id: 'pages.roleTable.titleDomain',
-            defaultMessage: '隔离域',
+            id: 'pages.permissionTable.titleMethod',
+            defaultMessage: 'Method',
           })}
           width="md"
           valueEnum={{
-            default: '缺省域',
-            test: '测试域',
+            get: 'GET',
+            post: 'POST',
+            put: 'PUT',
+            delete: 'DELETE',
           }}
         />
       </StepsForm.StepForm>

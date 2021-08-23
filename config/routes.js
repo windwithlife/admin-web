@@ -57,23 +57,17 @@ export default [
         component: './account/permission',
       },
       {
+        path: '/admin/menu',
+        name: 'menu-admin',
+        icon: 'smile',
+        component: './account/menu',
+      },
+      {
         component: './404',
       },
     ],
   },
-  {
-    path: '/menu',
-    name: 'menu',
-    icon: 'smile',
-    routes: [
-      {
-        path: '/menu/home',
-        name: 'home',
-        icon: 'smile',
-        component: './menu/index',
-      },
-    ],
-  },
+  
   {
     path: '/cms',
     name: 'cms',

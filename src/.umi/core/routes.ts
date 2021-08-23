@@ -256,21 +256,14 @@ export function getRoutes() {
             "exact": true
           },
           {
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
-            "exact": true
-          }
-        ]
-      },
-      {
-        "path": "/menu",
-        "name": "menu",
-        "icon": "smile",
-        "routes": [
-          {
-            "path": "/menu/home",
-            "name": "home",
+            "path": "/admin/menu",
+            "name": "menu-admin",
             "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__menu__index' */'/Users/ctrip/code/iot/admin-web/src/pages/menu/index'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__account__menu' */'/Users/ctrip/code/iot/admin-web/src/pages/account/menu'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
             "exact": true
           }
         ]
