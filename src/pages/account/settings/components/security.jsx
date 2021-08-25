@@ -33,11 +33,7 @@ const SecurityView = () => {
       description: `已绑定邮箱：ant***sign.com`,
       actions: [<a key="Modify">修改</a>],
     },
-    {
-      title: 'MFA 设备',
-      description: '未绑定 MFA 设备，绑定后，可以进行二次确认',
-      actions: [<a key="bind">绑定</a>],
-    },
+   
   ];
 
   const data = getData();

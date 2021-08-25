@@ -7,9 +7,20 @@ export default class AccountModel {
   /***********************************用户管理******************************/
   //获取当前用户信息
   static async currentUser(options) {
-    return await new Model().fetch_get('/account-service/currentUser', options);
+    return await new Model().fetch_get('/account-service/account/currentUser', options);
   };
 
+  /** 退出登录接口 POST /api/login/outLogin */
+
+  static async outLogin(options) {
+    return await new Model().fetch_post('/account-service/account/logout', params, options);
+}
+/** 登录接口 POST /api/login/account */
+
+  static async login(params, options) {
+  return  await new Model().fetch_post('/account-service/account/login', params, options);
+  
+}
   //查询管理用户
   static async queryAdminUsers(params,options) {
     let result = await new Model().fetch_post('/account-service/account/queryAdminUsers', params, options);

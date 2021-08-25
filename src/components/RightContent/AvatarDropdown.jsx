@@ -5,7 +5,11 @@ import { history, useModel } from 'umi';
 import { stringify } from 'querystring';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
-import { outLogin } from '@/services/ant-design-pro/api';
+import AccountModel from '@/models/account';
+import Model from '@/models/model';
+
+//import { outLogin } from '@/services/ant-design-pro/api';
+let { outLogin } = AccountModel;
 
 /**
  * 退出登录，并且将当前的 url 保存
@@ -33,6 +37,7 @@ const AvatarDropdown = ({ menu }) => {
 
       if (key === 'logout') {
         setInitialState((s) => ({ ...s, currentUser: undefined }));
+        new Model().clearToken();
         loginOut();
         return;
       }
@@ -59,7 +64,7 @@ const AvatarDropdown = ({ menu }) => {
 
   const { currentUser } = initialState;
 
-  if (!currentUser || !currentUser.name) {
+  if (!currentUser || !currentUser.token) {
     return loading;
   }
 

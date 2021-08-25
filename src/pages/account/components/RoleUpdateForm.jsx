@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'antd';
+import { Modal,Form } from 'antd';
 import {
   ProFormSelect,
   ProFormText,
@@ -43,6 +43,7 @@ const UpdateForm = (props) => {
     >
       <StepsForm.StepForm
         request={async () => ({
+          id: props.values.id,
           name: props.values.name,
           description: props.values.description,
         })}
@@ -51,6 +52,10 @@ const UpdateForm = (props) => {
           defaultMessage: '基本信息',
         })}
       >
+         <Form.Item
+          name="id"
+          noStyle='true'
+        />
         <ProFormText
           name="name"
           label={intl.formatMessage({

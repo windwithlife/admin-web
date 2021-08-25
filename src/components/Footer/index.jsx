@@ -13,21 +13,21 @@ export default () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: 'Ant Design Pro',
-          title: 'Simple Design',
-          href: 'https://pro.ant.design',
+          key: 'Simple Pro',
+          title: 'A Simple Production',
+          href: 'https://www.zhangyongqiao.com',
           blankTarget: true,
         },
         {
           key: 'github',
           title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://github.com/windwithlife/AdminWeb.git',
           blankTarget: true,
         },
         {
           key: 'Ant Design',
           title: '官方网站',
-          href: 'https://ant.design',
+          href: 'https://www.zhangyongqiao.com',
           blankTarget: true,
         },
       ]}

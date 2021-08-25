@@ -355,6 +355,8 @@ const TableList = () => {
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {
+          console.log("update the user info===>");
+          console.log(value);
           const success = await handleUpdate(value);
 
           if (success) {

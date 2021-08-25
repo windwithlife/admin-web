@@ -5,16 +5,19 @@ import {
   TaobaoCircleOutlined,
   UserOutlined,
   WeiboCircleOutlined,
+  WechatOutlined,
 } from '@ant-design/icons';
 import { Alert, Space, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import ProForm, { ProFormCaptcha, ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from 'umi';
 import Footer from '@/components/Footer';
-import { login } from '@/services/ant-design-pro/api';
+//import { login } from '@/services/ant-design-pro/api';
+import AccountModel from '@/models/account';
+import Model from '@/models/model';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import styles from './index.less';
-
+const login = AccountModel.login;
 const LoginMessage = ({ content }) => (
   <Alert
     style={{
@@ -47,8 +50,10 @@ const Login = () => {
     try {
       // 登录
       const msg = await login({ ...values, type });
-
-      if (msg.status === 'ok') {
+      console.log('Login result ===>');
+      console.log(msg);
+      if (msg.status.message === 'SUCCESS') {
+        new Model().saveToken(msg.data.token);
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
@@ -66,6 +71,7 @@ const Login = () => {
 
       setUserLoginState(msg);
     } catch (error) {
+      console.log(error);
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
         defaultMessage: '登录失败，请重试！',
@@ -87,7 +93,7 @@ const Login = () => {
           <div className={styles.header}>
             <Link to="/">
               <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>Ant Design</span>
+              <span className={styles.title}>物联网平台</span>
             </Link>
           </div>
           <div className={styles.desc}>
@@ -300,8 +306,8 @@ const Login = () => {
           </ProForm>
           <Space className={styles.other}>
             <FormattedMessage id="pages.login.loginWith" defaultMessage="其他登录方式" />
+            <WechatOutlined className={styles.icon} />
             <AlipayCircleOutlined className={styles.icon} />
-            <TaobaoCircleOutlined className={styles.icon} />
             <WeiboCircleOutlined className={styles.icon} />
           </Space>
         </div>

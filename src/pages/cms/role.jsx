@@ -1,13 +1,14 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, message, Input, Drawer } from 'antd';
+import { Button, message, Popconfirm, Drawer } from 'antd';
 import React, { useState, useRef } from 'react';
 import { useIntl, FormattedMessage } from 'umi';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
-import { ModalForm, ProFormText, ProFormTextArea } from '@ant-design/pro-form';
+import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
-import UpdateForm from './components/UpdateForm';
-import { rule, addRule, updateRule, removeRule } from '@/services/ant-design-pro/api';
+import UpdateForm from './components/RoleUpdateForm';
+import AccountModel from '@/models/account';
+
 /**
  * @en-US Add node
  * @zh-CN 添加节点
@@ -18,7 +19,7 @@ const handleAdd = async (fields) => {
   const hide = message.loading('正在添加');
 
   try {
-    await addRule({ ...fields });
+    await AccountModel.addRole({ ...fields });
     hide();
     message.success('Added successfully');
     return true;
@@ -39,9 +40,10 @@ const handleUpdate = async (fields) => {
   const hide = message.loading('Configuring');
 
   try {
-    await updateRule({
+    await AccountModel.updateRole({
       name: fields.name,
-      desc: fields.desc,
+      description: fields.description,
+      domain: fields.domain,
       key: fields.key,
     });
     hide();
@@ -65,8 +67,8 @@ const handleRemove = async (selectedRows) => {
   if (!selectedRows) return true;
 
   try {
-    await removeRule({
-      key: selectedRows.map((row) => row.key),
+    await AccountModel.removeRoles({
+      ids: selectedRows.map((row) => row.key),
     });
     hide();
     message.success('Deleted successfully and will refresh soon');
@@ -77,6 +79,33 @@ const handleRemove = async (selectedRows) => {
     return false;
   }
 };
+
+/**
+ *  Delete node
+ * @zh-CN 删除一行数据
+ *
+ * @param index
+ */
+
+const handleRemoveRow = async (index) => {
+  const hide = message.loading('正在删除');
+  if (!index) return true;
+
+  try {
+    await AccountModel.removeRole({
+      id: index,
+    });
+    hide();
+    message.success('Deleted successfully and will refresh soon');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('Delete failed, please try again');
+    return false;
+  }
+};
+
+
 
 const TableList = () => {
   /**
@@ -90,6 +119,7 @@ const TableList = () => {
    * */
 
   const [updateModalVisible, handleUpdateModalVisible] = useState(false);
+  //const [removeModalVisible, setRemoveModalVisible] = useState(false);
   const [showDetail, setShowDetail] = useState(false);
   const actionRef = useRef();
   const [currentRow, setCurrentRow] = useState();
@@ -102,10 +132,15 @@ const TableList = () => {
   const intl = useIntl();
   const columns = [
     {
+      title: <FormattedMessage id="pages.table.titleId" defaultMessage="编号ID" />,
+      dataIndex: 'id',
+      valueType: 'textarea',
+    },
+    {
       title: (
         <FormattedMessage
-          id="pages.searchTable.updateForm.ruleName.nameLabel"
-          defaultMessage="Rule name"
+          id="pages.table.titleName"
+          defaultMessage="名称"
         />
       ),
       dataIndex: 'name',
@@ -124,100 +159,28 @@ const TableList = () => {
       },
     },
     {
-      title: <FormattedMessage id="pages.searchTable.titleDesc" defaultMessage="Description" />,
-      dataIndex: 'desc',
+      title: <FormattedMessage id="pages.table.titleDesc" defaultMessage="描述说明" />,
+      dataIndex: 'description',
       valueType: 'textarea',
     },
     {
       title: (
         <FormattedMessage
-          id="pages.searchTable.titleCallNo"
-          defaultMessage="Number of service calls"
+          id="pages.roleTable.titleDomain"
+          defaultMessage="域名"
         />
       ),
-      dataIndex: 'callNo',
+      dataIndex: 'domain',
       sorter: true,
       hideInForm: true,
-      renderText: (val) =>
-        `${val}${intl.formatMessage({
-          id: 'pages.searchTable.tenThousand',
-          defaultMessage: ' 万 ',
-        })}`,
     },
-    {
-      title: <FormattedMessage id="pages.searchTable.titleStatus" defaultMessage="Status" />,
-      dataIndex: 'status',
-      hideInForm: true,
-      valueEnum: {
-        0: {
-          text: (
-            <FormattedMessage
-              id="pages.searchTable.nameStatus.default"
-              defaultMessage="Shut down"
-            />
-          ),
-          status: 'Default',
-        },
-        1: {
-          text: (
-            <FormattedMessage id="pages.searchTable.nameStatus.running" defaultMessage="Running" />
-          ),
-          status: 'Processing',
-        },
-        2: {
-          text: (
-            <FormattedMessage id="pages.searchTable.nameStatus.online" defaultMessage="Online" />
-          ),
-          status: 'Success',
-        },
-        3: {
-          text: (
-            <FormattedMessage
-              id="pages.searchTable.nameStatus.abnormal"
-              defaultMessage="Abnormal"
-            />
-          ),
-          status: 'Error',
-        },
-      },
-    },
-    {
-      title: (
-        <FormattedMessage
-          id="pages.searchTable.titleUpdatedAt"
-          defaultMessage="Last scheduled time"
-        />
-      ),
-      sorter: true,
-      dataIndex: 'updatedAt',
-      valueType: 'dateTime',
-      renderFormItem: (item, { defaultRender, ...rest }, form) => {
-        const status = form.getFieldValue('status');
 
-        if (`${status}` === '0') {
-          return false;
-        }
-
-        if (`${status}` === '3') {
-          return (
-            <Input
-              {...rest}
-              placeholder={intl.formatMessage({
-                id: 'pages.searchTable.exception',
-                defaultMessage: 'Please enter the reason for the exception!',
-              })}
-            />
-          );
-        }
-
-        return defaultRender(item);
-      },
-    },
     {
-      title: <FormattedMessage id="pages.searchTable.titleOption" defaultMessage="Operating" />,
+      title: <FormattedMessage id="pages.table.titleOperation" defaultMessage="Operating" />,
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
+
         <a
           key="config"
           onClick={() => {
@@ -225,14 +188,20 @@ const TableList = () => {
             setCurrentRow(record);
           }}
         >
-          <FormattedMessage id="pages.searchTable.config" defaultMessage="Configuration" />
+          <FormattedMessage id="pages.table.config" defaultMessage="配置修改" />
         </a>,
-        <a key="subscribeAlert" href="https://procomponents.ant.design/">
-          <FormattedMessage
-            id="pages.searchTable.subscribeAlert"
-            defaultMessage="Subscribe to alerts"
-          />
-        </a>,
+        <Popconfirm 
+         key={'Remove-' + record.id}
+        title={intl.formatMessage({
+          id: 'pages.table.titleRemove',
+          defaultMessage: '删除',
+        })} onConfirm={() => {
+          handleRemoveRow(record.id);
+          actionRef.current?.reloadAndRest?.();
+        }} >
+          < a href="#" > <FormattedMessage id="pages.table.remove" defaultMessage="删除" /> </a>
+        </Popconfirm>,
+
       ],
     },
   ];
@@ -240,8 +209,8 @@ const TableList = () => {
     <PageContainer>
       <ProTable
         headerTitle={intl.formatMessage({
-          id: 'pages.searchTable.title',
-          defaultMessage: 'Enquiry form',
+          id: 'pages.roleTable.title',
+          defaultMessage: '平台角色',
         })}
         actionRef={actionRef}
         rowKey="key"
@@ -256,10 +225,10 @@ const TableList = () => {
               handleModalVisible(true);
             }}
           >
-            <PlusOutlined /> <FormattedMessage id="pages.searchTable.new" defaultMessage="New" />
+            <PlusOutlined /> <FormattedMessage id="pages.table.addNew" defaultMessage="New" />
           </Button>,
         ]}
-        request={rule}
+        request={AccountModel.queryAllRoles}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
@@ -279,16 +248,8 @@ const TableList = () => {
               >
                 {selectedRowsState.length}
               </a>{' '}
-              <FormattedMessage id="pages.searchTable.item" defaultMessage="项" />
-              &nbsp;&nbsp;
-              <span>
-                <FormattedMessage
-                  id="pages.searchTable.totalServiceCalls"
-                  defaultMessage="Total number of service calls"
-                />{' '}
-                {selectedRowsState.reduce((pre, item) => pre + item.callNo, 0)}{' '}
-                <FormattedMessage id="pages.searchTable.tenThousand" defaultMessage="万" />
-              </span>
+              <FormattedMessage id="pages.table.item" defaultMessage="项" />
+
             </div>
           }
         >
@@ -300,22 +261,17 @@ const TableList = () => {
             }}
           >
             <FormattedMessage
-              id="pages.searchTable.batchDeletion"
+              id="pages.table.batchDeletion"
               defaultMessage="Batch deletion"
             />
           </Button>
-          <Button type="primary">
-            <FormattedMessage
-              id="pages.searchTable.batchApproval"
-              defaultMessage="Batch approval"
-            />
-          </Button>
+
         </FooterToolbar>
       )}
       <ModalForm
         title={intl.formatMessage({
-          id: 'pages.searchTable.createForm.newRule',
-          defaultMessage: 'New rule',
+          id: 'pages.table.addNew',
+          defaultMessage: '新增',
         })}
         width="400px"
         visible={createModalVisible}
@@ -333,13 +289,17 @@ const TableList = () => {
         }}
       >
         <ProFormText
+          label={intl.formatMessage({
+            id: 'pages.roleTable.titleName',
+            defaultMessage: '角色名称',
+          })}
           rules={[
             {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pages.searchTable.ruleName"
-                  defaultMessage="Rule name is required"
+                  id="pages.roleTable.titleName"
+                  defaultMessage="Role name is required"
                 />
               ),
             },
@@ -347,7 +307,23 @@ const TableList = () => {
           width="md"
           name="name"
         />
-        <ProFormTextArea width="md" name="desc" />
+        <ProFormTextArea width="md" name="description"
+          label={intl.formatMessage({
+            id: 'pages.table.titleDesc',
+            defaultMessage: '描述',
+          })} />
+        <ProFormSelect
+          name="domain"
+          label={intl.formatMessage({
+            id: 'pages.roleTable.titleDomain',
+            defaultMessage: '隔离域',
+          })}
+          width="md"
+          valueEnum={{
+            month: '测试',
+            week: 'B测试域',
+          }}
+        />
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {

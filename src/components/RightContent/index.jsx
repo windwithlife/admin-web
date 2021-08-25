@@ -50,7 +50,7 @@ const GlobalHeaderRight = () => {
       <span
         className={styles.action}
         onClick={() => {
-          window.open('https://pro.ant.design/docs/getting-started');
+          window.open('https://api.zhangyongqiao.com/connection-service/swagger-ui.html');
         }}
       >
         <QuestionCircleOutlined />

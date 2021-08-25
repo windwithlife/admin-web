@@ -25,108 +25,8 @@ export default [
     ],
   },
   
-  {
-    path: '/admin',
-    name: 'admin',
-    icon: 'user',
-    access: 'canAdmin',
-    routes: [
-      {
-        name: 'settings',
-        icon: 'smile',
-        path: '/admin/settings',
-        component: './account/settings',
-      },
-      {
-        path: '/admin/user',
-        name: 'system-user-admin',
-        icon: 'smile',
-        component: './account/admin-user',
-      },
-      
-      {
-        path: '/admin/role',
-        name: 'role-admin',
-        icon: 'smile',
-        component: './account/role',
-      },
-      {
-        path: '/admin/permission',
-        name: 'permission-admin',
-        icon: 'smile',
-        component: './account/permission',
-      },
-      {
-        path: '/admin/menu',
-        name: 'menu-admin',
-        icon: 'smile',
-        component: './account/menu',
-      },
-      {
-        component: './404',
-      },
-    ],
-  },
   
-  {
-    path: '/cms',
-    name: 'cms',
-    icon: 'crown',
-    routes: [
-      {
-        path: '/cms/category',
-        name: 'cms-category',
-        icon: 'smile',
-        component: './cms/category',
-      },
-      {
-        path: '/cms/tag',
-        name: 'cms-tag',
-        icon: 'smile',
-        component: './cms/tag',
-      },
-      {
-        path: '/cms/channel',
-        name: 'channel',
-        icon: 'smile',
-        component: './cms/channel',
-      },
-      {
-        path: '/cms/image-text',
-        name: 'image-text',
-        icon: 'smile',
-        component: './cms/image-text',
-      },
-      {
-        path: '/cms/rich-text',
-        name: 'rich-text',
-        icon: 'smile',
-        component: './cms/rich-text',
-      },
-      {
-        component: './404',
-      },
-    ],
-  },
-  {
-    path: '/ops',
-    name: 'ops',
-    icon: 'crown',
-    access: 'canAdmin',
-    component: './Admin',
-    routes: [
-      {
-        path: '/ops/logs',
-        name: 'logs',
-        icon: 'smile',
-        component: './Welcome',
-      },
-     
-      {
-        component: './404',
-      },
-    ],
-  },
+  
   {
     path: '/gateway',
     name: 'gateway',
@@ -175,7 +75,113 @@ export default [
       },
     ],
   },
+  {
+    path: '/ops',
+    name: 'ops',
+    icon: 'crown',
+    routes: [
+      {
+        path: '/ops/monitor',
+        name: 'monitor',
+        icon: 'smile',
+        component: './dashboard/monitor/index',
+      },
+      {
+        path: '/ops/analysis',
+        name: 'analysis',
+        icon: 'smile',
+        component: './dashboard/analysis/index',
+      },
+     
+      {
+        component: './404',
+      },
+    ],
+  },
 
+  {
+    path: '/cms',
+    name: 'cms',
+    icon: 'crown',
+    routes: [
+      {
+        path: '/cms/category',
+        name: 'cms-category',
+        icon: 'smile',
+        component: './cms/category',
+      },
+      {
+        path: '/cms/tag',
+        name: 'cms-tag',
+        icon: 'smile',
+        component: './cms/tag',
+      },
+      {
+        path: '/cms/channel',
+        name: 'channel',
+        icon: 'smile',
+        component: './cms/channel',
+      },
+      {
+        path: '/cms/image-text',
+        name: 'image-text',
+        icon: 'smile',
+        component: './cms/image-text',
+      },
+      {
+        path: '/cms/rich-text',
+        name: 'rich-text',
+        icon: 'smile',
+        component: './cms/rich-text',
+      },
+      {
+        component: './404',
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    icon: 'user',
+    access: 'canAdmin',
+    routes: [
+      {
+        name: 'settings',
+        icon: 'smile',
+        path: '/admin/settings',
+        component: './account/settings',
+      },
+      {
+        path: '/admin/user',
+        name: 'system-user-admin',
+        icon: 'smile',
+        component: './account/admin-user',
+      },
+      
+      {
+        path: '/admin/role',
+        name: 'role-admin',
+        icon: 'smile',
+        component: './account/role',
+      },
+      {
+        path: '/admin/permission',
+        name: 'permission-admin',
+        icon: 'smile',
+        component: './account/permission',
+      },
+      {
+        path: '/admin/menu',
+        name: 'menu-admin',
+        icon: 'smile',
+        component: './account/menu',
+      },
+      {
+        component: './404',
+      },
+    ],
+  },
+  
   {
     path: '/docs',
     name: 'docs',

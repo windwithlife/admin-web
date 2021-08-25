@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'antd';
+import { Modal,Form } from 'antd';
 import {
   ProFormSelect,
   ProFormText,
@@ -43,6 +43,7 @@ const UpdateForm = (props) => {
     >
       <StepsForm.StepForm
         request={async () => ({
+          id: props.values.id,
           loginName: props.values.loginName,
           nickName: props.values.nickName,
           phoneNumber: props.values.phoneNumber,
@@ -52,6 +53,10 @@ const UpdateForm = (props) => {
           defaultMessage: '基本信息',
         })}
       >
+        <Form.Item
+          name="id"
+          noStyle='true'
+        />
         <ProFormText
           name="loginName"
           label={intl.formatMessage({
@@ -90,7 +95,33 @@ const UpdateForm = (props) => {
             },
           ]}
         />
-        
+      
+
+      </StepsForm.StepForm>
+      <StepsForm.StepForm
+        request={async () => ({
+          password: props.values.password,
+          phoneNumber: props.values.phoneNumber,
+        })}
+        title={intl.formatMessage({
+          id: 'pages.accountTable.updateForm.securityConfig',
+          defaultMessage: '安全设置',
+        })}
+      >
+        <ProFormText
+          name="password"
+          label={intl.formatMessage({
+            id: 'pages.accountTable.titlePassword',
+            defaultMessage: '密码',
+          })}
+          width="md"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        />
+       
         <ProFormText
           name="phoneNumber"
           label={intl.formatMessage({

@@ -10,6 +10,8 @@ export default {
   'menu.admin.system-user-admin': '系统用户管理',
   'menu.admin.role-admin': '角色管理',
   'menu.admin.permission-admin': '权限管理',
+  'menu.admin.menu-admin': '菜单配置',
+  
   'menu.admin.developer-doc': '开发文档',
 
   'menu.menu': '菜单',
@@ -36,8 +38,9 @@ export default {
   'menu.docs.docs-api': 'API开发文档',
   'menu.docs.docs-framework': '框架开发文档',
 
-  'menu.ops': '运维管理',
-  'menu.ops.logs': '日志',
+  'menu.ops': '平台运维',
+  'menu.ops.analysis': '平台数据分析',
+  'menu.ops.monitor': '平台实时监控',
 
   'menu.login': '登录',
   'menu.register': '注册',
