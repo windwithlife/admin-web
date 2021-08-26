@@ -67,5 +67,3 @@ spec:
               serviceName: service-{{.app_name}}
               servicePort: 80
               
-
-
