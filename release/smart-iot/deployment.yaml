@@ -59,7 +59,7 @@ spec:
     - host: {{.soa_gateway}}
       http:
         paths:
-          - path: {{.soa_path}}
+          - path: {{.path_name}}
             pathType: Prefix
             backend:
               serviceName: service-{{.app_name}}
