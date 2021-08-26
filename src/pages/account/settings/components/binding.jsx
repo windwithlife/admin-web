@@ -1,8 +1,8 @@
 import { AlipayOutlined, DingdingOutlined, TaobaoOutlined } from '@ant-design/icons';
-import { List } from 'antd';
+import { Button, List } from 'antd';
 import React, { Fragment } from 'react';
 
-const BindingView = () => {
+const BindingView = (props) => {
   const getData = () => [
     {
       title: '绑定淘宝',
@@ -39,6 +39,7 @@ const BindingView = () => {
           </List.Item>
         )}
       />
+      <Button onClick={()=>{ props.switchTab('base')}}>编辑</Button>
     </Fragment>
   );
 };

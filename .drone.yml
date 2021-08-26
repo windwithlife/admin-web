@@ -13,13 +13,14 @@ steps:
       - cd  ./
       - npm install
       - npm run build
+      - rm -rf node_modules
 
   - name: 构建镜像&PUSH镜像到Hub（PROD）.
     image: plugins/docker
     settings:
       dockerfile: ./release/prod/Dockerfile
       use_cache: true
-      repo: ccr.ccs.tencentyun.com/windwithlife/iot-admin
+      repo: ccr.ccs.tencentyun.com/windwithlife/admin-web
       registry: https://ccr.ccs.tencentyun.com
       mirror: https://89cgb0wn.mirror.aliyuncs.com
       username: 100008098144
@@ -36,9 +37,9 @@ steps:
       kubeconfig:
         from_secret: kubeconfig
       app_name: admin-web
-      image_name: ccr.ccs.tencentyun.com/windwithlife/iot-admin
-      soa_gateway: www.koudaibook.com
-      soa_gateway_cert: api-koudaibook-cert
+      image_name: ccr.ccs.tencentyun.com/windwithlife/admin-web
+      soa_gateway: admin.koudaibook.com
+      soa_gateway_cert: admin-auto-secret
       soa_path: /admin-web
       build_tag: build-${DRONE_BUILD_NUMBER}
 
@@ -57,7 +58,7 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: smart-iot-adaminweb-UAT
+name: adamin-web-UAT
 
 steps:
   - name: 编译打包代码
@@ -70,14 +71,14 @@ steps:
       - cd  ./
       - npm install
       - npm run build
-      - ls
+      - rm -rf node_modules
 
   - name: 构建镜像&PUSH镜像到Hub(UAT).
     image: plugins/docker
     settings:
-      dockerfile: ./release/prod/Dockerfile
+      dockerfile: ./release/uat/Dockerfile
       use_cache: true
-      repo: ccr.ccs.tencentyun.com/windwithlife/iot-admin
+      repo: ccr.ccs.tencentyun.com/windwithlife/admin-web
       registry: https://ccr.ccs.tencentyun.com/
       mirror: https://89cgb0wn.mirror.aliyuncs.com
       username: 100008098144
@@ -91,13 +92,13 @@ steps:
   - name: 部署到K3S集群-(UAT)
     image: bh90210/dron8s:latest
     settings:
-      yaml: ./release/prod/deployment.yaml
+      yaml: ./release/uat/deployment.yaml
       kubeconfig:
         from_secret: kubeconfig
       app_name: admin-web
-      image_name: ccr.ccs.tencentyun.com/windwithlife/iot-admin
-      soa_gateway: www.zhangyongqiao.com
-      soa_gateway_cert: api-koudaibook-cert
+      image_name: ccr.ccs.tencentyun.com/windwithlife/admin-web
+      soa_gateway: admin.zhangyongqiao.com
+      soa_gateway_cert: admin-auto-secret
       soa_path: /admin-web
       build_tag: build-${DRONE_BUILD_NUMBER}
 
@@ -113,3 +114,62 @@ trigger:
     - push
 
 
+---
+kind: pipeline
+type: docker
+name: admin-web-iot
+
+
+steps:
+  - name: 编译打包代码
+    image: node:12.19.0-alpine
+    volumes:
+      - name : mvncache
+        path : /root/.m2
+    commands:
+      - echo 'test echo'
+      - cd  ./
+      - npm install
+      - npm run build
+      - rm -rf node_modules
+     
+
+  - name: 构建镜像&PUSH镜像到Hub（PROD）.
+    image: plugins/docker
+    settings:
+      dockerfile: ./release/smart-iot/Dockerfile
+      use_cache: true
+      repo: registry.cn-hangzhou.aliyuncs.com/windwithlife/admin-web-iot
+      registry: https://registry.cn-hangzhou.aliyuncs.com
+      mirror: https://89cgb0wn.mirror.aliyuncs.com
+      username: 379163259@qq.com
+      password: password7&
+      # 更多变量参考https://docs.drone.io/pipeline/environment/reference/
+      tags:
+        - ${DRONE_TAG=latest}
+        - build-${DRONE_BUILD_NUMBER}      
+
+  - name: 部署到集群-dron8s方式(PROD)
+    image: bh90210/dron8s:latest
+    settings:
+      yaml: ./release/smart-iot/deployment.yaml
+      kubeconfig:
+        from_secret: kubeconfig
+      app_name: admin-web
+      image_name: registry.cn-hangzhou.aliyuncs.com/windwithlife/admin-web-iot
+      soa_gateway: manager.koudaibook.com
+      soa_gateway_cert: admin-auto-secret
+      path_name: /admin-web
+      build_tag: build-${DRONE_BUILD_NUMBER}
+
+
+volumes:
+  - name: mvncache
+    host:
+      path: /var/lib/cache/.m2
+
+trigger:
+  branch:
+    - smart-iot
+  event:
+    - push    

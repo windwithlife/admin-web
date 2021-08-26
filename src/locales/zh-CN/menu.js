@@ -19,7 +19,7 @@ export default {
   
 
   'menu.cms': '内容信息管理',
-  'menu.cms.cms-category': '内容分类',
+  'menu.cms.page-module': '页面模块管理',
   'menu.cms.cms-tag': '内容标签',
   'menu.cms.channel': '内容频道',
   'menu.cms.image-text': '图文',

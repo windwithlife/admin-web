@@ -6,7 +6,7 @@ import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
-import UpdateForm from './components/TagUpdateForm';
+import UpdateForm from './components/PageModuleUpdateForm';
 import Model from '@/models/menu';
 
 /**

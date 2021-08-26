@@ -1,10 +1,14 @@
 // @ts-nocheck
 
   import SmileOutlined from '@ant-design/icons/es/icons/SmileOutlined';
-import CrownOutlined from '@ant-design/icons/es/icons/CrownOutlined';
-import UserOutlined from '@ant-design/icons/es/icons/UserOutlined'
+import HighlightOutlined from '@ant-design/icons/es/icons/HighlightOutlined';
+import TableOutlined from '@ant-design/icons/es/icons/TableOutlined';
+import UserOutlined from '@ant-design/icons/es/icons/UserOutlined';
+import CrownOutlined from '@ant-design/icons/es/icons/CrownOutlined'
   export default {
     SmileOutlined,
-CrownOutlined,
-UserOutlined
+HighlightOutlined,
+TableOutlined,
+UserOutlined,
+CrownOutlined
   }

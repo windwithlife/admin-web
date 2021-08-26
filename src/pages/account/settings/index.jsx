@@ -1,8 +1,8 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
-import BaseView from './components/base';
-import BindingView from './components/binding';
+import BaseView from './components/UserBaseInfo';
+import BaseEditView from './components/BaseView';
 import NotificationView from './components/notification';
 import SecurityView from './components/security';
 import styles from './style.less';
@@ -13,6 +13,7 @@ const Settings = () => {
     base: '基本设置',
     security: '安全设置',
     notification: '新消息通知',
+   
   };
   const [initConfig, setInitConfig] = useState({
     mode: 'inline',
@@ -20,6 +21,11 @@ const Settings = () => {
   });
   const dom = useRef();
 
+  const switchTab=(key) => {
+    console.log('Key ****--------->' + key);
+    console.log(key);
+    setInitConfig({ ...initConfig, selectKey: key });
+  };
   const resize = () => {
     requestAnimationFrame(() => {
       if (!dom.current) {
@@ -60,14 +66,17 @@ const Settings = () => {
     const { selectKey } = initConfig;
 
     switch (selectKey) {
+      case 'base-edit':
+        return <BaseEditView />;
       case 'base':
-        return <BaseView />;
+        return <BaseView switchTab={switchTab} />;
 
       case 'security':
         return <SecurityView />;
 
       case 'notification':
         return <NotificationView />;
+  
 
       default:
         return null;

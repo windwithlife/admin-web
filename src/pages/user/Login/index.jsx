@@ -40,6 +40,7 @@ const Login = () => {
     const userInfo = await initialState?.fetchUserInfo?.();
 
     if (userInfo) {
+      userInfo.avatar = userInfo.photoUrl;
       await setInitialState((s) => ({ ...s, currentUser: userInfo }));
     }
   };
@@ -307,7 +308,6 @@ const Login = () => {
           <Space className={styles.other}>
             <FormattedMessage id="pages.login.loginWith" defaultMessage="其他登录方式" />
             <WechatOutlined className={styles.icon} />
-            <AlipayCircleOutlined className={styles.icon} />
             <WeiboCircleOutlined className={styles.icon} />
           </Space>
         </div>

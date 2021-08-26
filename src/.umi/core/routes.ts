@@ -224,7 +224,7 @@ export function getRoutes() {
       {
         "path": "/gateway",
         "name": "gateway",
-        "icon": "crown",
+        "icon": "highlight",
         "routes": [
           {
             "path": "/gateway/home",
@@ -249,7 +249,7 @@ export function getRoutes() {
       {
         "path": "/device",
         "name": "device",
-        "icon": "crown",
+        "icon": "table",
         "routes": [
           {
             "path": "/device/home",
@@ -274,7 +274,7 @@ export function getRoutes() {
       {
         "path": "/ops",
         "name": "ops",
-        "icon": "crown",
+        "icon": "table",
         "routes": [
           {
             "path": "/ops/monitor",
@@ -299,13 +299,20 @@ export function getRoutes() {
       {
         "path": "/cms",
         "name": "cms",
-        "icon": "crown",
+        "icon": "smile",
         "routes": [
           {
-            "path": "/cms/category",
-            "name": "cms-category",
+            "path": "/cms/channel",
+            "name": "channel",
             "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__category' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/category'), loading: LoadingComponent}),
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__channel' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/channel'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
+            "path": "/cms/page-module",
+            "name": "page-module",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__page-module' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/page-module'), loading: LoadingComponent}),
             "exact": true
           },
           {
@@ -313,13 +320,6 @@ export function getRoutes() {
             "name": "cms-tag",
             "icon": "smile",
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__tag' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/tag'), loading: LoadingComponent}),
-            "exact": true
-          },
-          {
-            "path": "/cms/channel",
-            "name": "channel",
-            "icon": "smile",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__channel' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/channel'), loading: LoadingComponent}),
             "exact": true
           },
           {

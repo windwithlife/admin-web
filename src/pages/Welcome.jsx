@@ -17,19 +17,10 @@ export default () => {
   return (
     <PageContainer>
       <Card>
-        <Alert
-          message={intl.formatMessage({
-            id: 'pages.welcome.alertMessage',
-            defaultMessage: 'Faster and stronger heavy-duty components have been released.',
-          })}
-          type="success"
-          showIcon
-          banner
-          style={{
-            margin: -12,
-            marginBottom: 24,
-          }}
-        />
+        <img className={styles.welcome} src="./welcome.png" ></img>
+      </Card>
+      <Card>
+       
         <Typography.Text strong>
          
           <a

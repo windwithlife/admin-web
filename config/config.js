@@ -9,7 +9,7 @@ export default defineConfig({
   base: '/admin-web/',
   publicPath: '/admin-web/',
   define: {
-    API_URL: 'https://api.zhangyongqiao.com', // API地址
+    API_URL: 'https://api.koudaibook.com', // API地址
     BASE_PATH: '/admin-web', // API 服务PATH
     API_SECRET_KEY: 'XXXXXXXXXXXXXXXX', // API调用密钥
   },

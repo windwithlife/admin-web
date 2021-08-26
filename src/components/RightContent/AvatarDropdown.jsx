@@ -29,6 +29,18 @@ const loginOut = async () => {
   }
 };
 
+const getAvatarURL = (currentUser) => {
+  if (currentUser) {
+    if (currentUser.avatar) {
+      return currentUser.avatar;
+    }
+
+    const url = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
+    return url;
+  }
+
+  return '';
+};
 const AvatarDropdown = ({ menu }) => {
   const { initialState, setInitialState } = useModel('@@initialState');
   const onMenuClick = useCallback(
@@ -42,7 +54,7 @@ const AvatarDropdown = ({ menu }) => {
         return;
       }
 
-      history.push(`/account/${key}`);
+      history.push(`/admin/${key}`);
     },
     [setInitialState],
   );
@@ -70,12 +82,12 @@ const AvatarDropdown = ({ menu }) => {
 
   const menuHeaderDropdown = (
     <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
-      {menu && (
+      {/* {menu && (
         <Menu.Item key="center">
           <UserOutlined />
           个人中心
         </Menu.Item>
-      )}
+      )} */}
       {menu && (
         <Menu.Item key="settings">
           <SettingOutlined />
@@ -93,7 +105,7 @@ const AvatarDropdown = ({ menu }) => {
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
-        <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
+        <Avatar size="small" className={styles.avatar} src={getAvatarURL(currentUser)} alt="avatar" />
         <span className={`${styles.name} anticon`}>{currentUser.name}</span>
       </span>
     </HeaderDropdown>

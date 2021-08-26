@@ -40,32 +40,16 @@ let g_intl: IntlShape;
 
 const useLocalStorage = true;
 
-import lang_bnBD0 from "/Users/ctrip/code/iot/admin-web/src/locales/bn-BD.js";
 import enUS0 from 'antd/es/locale/en_US';
 import lang_enUS0 from "/Users/ctrip/code/iot/admin-web/src/locales/en-US.js";
-import faIR0 from 'antd/es/locale/fa_IR';
-import lang_faIR0 from "/Users/ctrip/code/iot/admin-web/src/locales/fa-IR.js";
-import idID0 from 'antd/es/locale/id_ID';
-import lang_idID0 from "/Users/ctrip/code/iot/admin-web/src/locales/id-ID.js";
 import jaJP0 from 'antd/es/locale/ja_JP';
 import lang_jaJP0 from "/Users/ctrip/code/iot/admin-web/src/locales/ja-JP.js";
-import ptBR0 from 'antd/es/locale/pt_BR';
-import lang_ptBR0 from "/Users/ctrip/code/iot/admin-web/src/locales/pt-BR.js";
 import zhCN0 from 'antd/es/locale/zh_CN';
 import lang_zhCN0 from "/Users/ctrip/code/iot/admin-web/src/locales/zh-CN.js";
 import zhTW0 from 'antd/es/locale/zh_TW';
 import lang_zhTW0 from "/Users/ctrip/code/iot/admin-web/src/locales/zh-TW.js";
 
 export const localeInfo: {[key: string]: any} = {
-  'bn-BD': {
-    messages: {
-      ...lang_bnBD0,
-    },
-    locale: 'bn-BD',
-    antd: {
-    },
-    momentLocale: 'bn-bd',
-  },
   'en-US': {
     messages: {
       ...lang_enUS0,
@@ -76,26 +60,6 @@ export const localeInfo: {[key: string]: any} = {
     },
     momentLocale: '',
   },
-  'fa-IR': {
-    messages: {
-      ...lang_faIR0,
-    },
-    locale: 'fa-IR',
-    antd: {
-      ...faIR0,
-    },
-    momentLocale: 'fa',
-  },
-  'id-ID': {
-    messages: {
-      ...lang_idID0,
-    },
-    locale: 'id-ID',
-    antd: {
-      ...idID0,
-    },
-    momentLocale: 'id',
-  },
   'ja-JP': {
     messages: {
       ...lang_jaJP0,
@@ -105,16 +69,6 @@ export const localeInfo: {[key: string]: any} = {
       ...jaJP0,
     },
     momentLocale: 'ja',
-  },
-  'pt-BR': {
-    messages: {
-      ...lang_ptBR0,
-    },
-    locale: 'pt-BR',
-    antd: {
-      ...ptBR0,
-    },
-    momentLocale: 'pt-br',
   },
   'zh-CN': {
     messages: {

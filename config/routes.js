@@ -30,7 +30,7 @@ export default [
   {
     path: '/gateway',
     name: 'gateway',
-    icon: 'crown',
+    icon: 'highlight',
     routes: [
       
       {
@@ -54,7 +54,7 @@ export default [
   {
     path: '/device',
     name: 'device',
-    icon: 'crown',
+    icon: 'table',
     routes: [
       
       {
@@ -78,7 +78,7 @@ export default [
   {
     path: '/ops',
     name: 'ops',
-    icon: 'crown',
+    icon: 'table',
     routes: [
       {
         path: '/ops/monitor',
@@ -102,13 +102,19 @@ export default [
   {
     path: '/cms',
     name: 'cms',
-    icon: 'crown',
+    icon: 'smile',
     routes: [
       {
-        path: '/cms/category',
-        name: 'cms-category',
+        path: '/cms/channel',
+        name: 'channel',
         icon: 'smile',
-        component: './cms/category',
+        component: './cms/channel',
+      },
+      {
+        path: '/cms/page-module',
+        name: 'page-module',
+        icon: 'smile',
+        component: './cms/page-module',
       },
       {
         path: '/cms/tag',
@@ -116,12 +122,7 @@ export default [
         icon: 'smile',
         component: './cms/tag',
       },
-      {
-        path: '/cms/channel',
-        name: 'channel',
-        icon: 'smile',
-        component: './cms/channel',
-      },
+      
       {
         path: '/cms/image-text',
         name: 'image-text',
