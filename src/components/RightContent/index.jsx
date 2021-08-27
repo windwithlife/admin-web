@@ -28,34 +28,31 @@ const GlobalHeaderRight = () => {
         defaultValue="设备搜索"
         options={[
           {
-            label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>,
-            value: 'umi ui',
+            label: <a href="/device/home">设备 </a>,
+            value: 'smart-iot',
           },
           {
-            label: <a href="next.ant.design">Ant Design</a>,
-            value: 'Ant Design',
+            label: <a href="/gateway/home">网关</a>,
+            value: 'gateway',
           },
           {
-            label: <a href="https://protable.ant.design/">Pro Table</a>,
-            value: 'Pro Table',
+            label: <a href="/admin/role">角色</a>,
+            value: 'role',
           },
-          {
-            label: <a href="https://prolayout.ant.design/">Pro Layout</a>,
-            value: 'Pro Layout',
-          },
+         
         ]} // onSearch={value => {
         //   console.log('input', value);
         // }}
       />
-      <span
+      {/* <span
         className={styles.action}
         onClick={() => {
           window.open('https://api.zhangyongqiao.com/connection-service/swagger-ui.html');
         }}
       >
         <QuestionCircleOutlined />
-      </span>
-      <Avatar menu={true} />
+      </span> */}
+      <Avatar menu={true}/>
       <SelectLang className={styles.action} />
     </Space>
   );
