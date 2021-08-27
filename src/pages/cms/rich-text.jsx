@@ -2,11 +2,13 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Drawer } from 'antd';
 import React, { useState, useRef } from 'react';
 import { useIntl, FormattedMessage } from 'umi';
+import { history, Link } from 'umi';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import UpdateForm from './components/RichTextUpdateForm';
+import NewForm from './richtext/NewRichText';
 import Model from '@/models/menu';
 
 /**
@@ -209,6 +211,7 @@ const TableList = () => {
         }} >
           < a href="#" > <FormattedMessage id="pages.table.remove" defaultMessage="删除" /> </a>
         </Popconfirm>,
+       
 
       ],
     },
@@ -230,7 +233,9 @@ const TableList = () => {
             type="primary"
             key="primary"
             onClick={() => {
-              handleModalVisible(true);
+              // handleModalVisible(true);
+              let addNewPath = "/cms/addNewRichText";
+              history.push({pathname: addNewPath,query:{id:35}});
             }}
           >
             <PlusOutlined /> <FormattedMessage id="pages.table.addNew" defaultMessage="New" />
@@ -281,7 +286,7 @@ const TableList = () => {
           id: 'pages.table.addNew',
           defaultMessage: '新增',
         })}
-        width="400px"
+        // width="400px"
         visible={createModalVisible}
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
@@ -296,42 +301,7 @@ const TableList = () => {
           }
         }}
       >
-        <ProFormText
-          label={intl.formatMessage({
-            id: 'pages.roleTable.titleName',
-            defaultMessage: '角色名称',
-          })}
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage
-                  id="pages.roleTable.titleName"
-                  defaultMessage="Role name is required"
-                />
-              ),
-            },
-          ]}
-          width="md"
-          name="name"
-        />
-        <ProFormTextArea width="md" name="description"
-          label={intl.formatMessage({
-            id: 'pages.table.titleDesc',
-            defaultMessage: '描述',
-          })} />
-        <ProFormSelect
-          name="domain"
-          label={intl.formatMessage({
-            id: 'pages.roleTable.titleDomain',
-            defaultMessage: '隔离域',
-          })}
-          width="md"
-          valueEnum={{
-            month: '测试',
-            week: 'B测试域',
-          }}
-        />
+       <NewForm ></NewForm>
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {

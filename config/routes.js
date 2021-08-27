@@ -136,6 +136,14 @@ export default [
         component: './cms/rich-text',
       },
       {
+        path: '/cms/addNewRichText',
+        name: 'rich-text-new',
+        icon: 'smile',
+        hideInMenu: 'true',
+        component: './cms/richtext/NewRichText',
+      },
+      
+      {
         component: './404',
       },
     ],
