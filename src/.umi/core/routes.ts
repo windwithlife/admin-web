@@ -337,6 +337,14 @@ export function getRoutes() {
             "exact": true
           },
           {
+            "path": "/cms/addNewRichText",
+            "name": "rich-text-new",
+            "icon": "smile",
+            "hideInMenu": "true",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__richtext__NewRichText' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/richtext/NewRichText'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
             "exact": true
           }

@@ -13,7 +13,7 @@ steps:
       - cd  ./
       - npm install
       - npm run build
-     
+      
 
   - name: 构建镜像&PUSH镜像到Hub（PROD）.
     image: plugins/docker
@@ -71,7 +71,7 @@ steps:
       - cd  ./
       - npm install
       - npm run build
-     
+      
 
   - name: 构建镜像&PUSH镜像到Hub(UAT).
     image: plugins/docker
@@ -132,9 +132,8 @@ steps:
       - npm install
       - npm run build
      
-     
 
-  - name: 构建镜像&PUSH镜像到Hub（PROD）.
+  - name: 构建镜像&PUSH镜像到Hub.
     image: plugins/docker
     settings:
       dockerfile: ./release/smart-iot/Dockerfile

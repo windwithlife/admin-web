@@ -42,8 +42,6 @@ const useLocalStorage = true;
 
 import enUS0 from 'antd/es/locale/en_US';
 import lang_enUS0 from "/Users/ctrip/code/iot/admin-web/src/locales/en-US.js";
-import jaJP0 from 'antd/es/locale/ja_JP';
-import lang_jaJP0 from "/Users/ctrip/code/iot/admin-web/src/locales/ja-JP.js";
 import zhCN0 from 'antd/es/locale/zh_CN';
 import lang_zhCN0 from "/Users/ctrip/code/iot/admin-web/src/locales/zh-CN.js";
 import zhTW0 from 'antd/es/locale/zh_TW';
@@ -59,16 +57,6 @@ export const localeInfo: {[key: string]: any} = {
       ...enUS0,
     },
     momentLocale: '',
-  },
-  'ja-JP': {
-    messages: {
-      ...lang_jaJP0,
-    },
-    locale: 'ja-JP',
-    antd: {
-      ...jaJP0,
-    },
-    momentLocale: 'ja',
   },
   'zh-CN': {
     messages: {
