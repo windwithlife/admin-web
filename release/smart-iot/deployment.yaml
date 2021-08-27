@@ -54,7 +54,7 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   tls:
-  - secretName: iot-admin-auto-secret
+  - secretName: admin-auto-secret
     hosts:
     - {{.soa_gateway}}
   rules:
