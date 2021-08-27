@@ -157,7 +157,7 @@ steps:
       app_name: admin-web
       image_name: registry.cn-hangzhou.aliyuncs.com/windwithlife/admin-web-iot
       soa_gateway: admin.koudaibook.com
-      soa_gateway_cert: iot-admin-auto-secret
+      soa_gateway_cert: admin-auto-secret
       path_name: /admin-web
       build_tag: build-${DRONE_BUILD_NUMBER}
 
