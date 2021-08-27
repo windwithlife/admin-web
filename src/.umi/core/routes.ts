@@ -413,6 +413,7 @@ export function getRoutes() {
             "path": "/docs/framework",
             "name": "docs-framework",
             "icon": "smile",
+            "hideInMenu": "true",
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__docs__framework-page' */'/Users/ctrip/code/iot/admin-web/src/pages/docs/framework-page'), loading: LoadingComponent}),
             "exact": true
           },
