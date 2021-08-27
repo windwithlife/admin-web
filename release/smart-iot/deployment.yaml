@@ -51,10 +51,10 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/ssl-proxy-headers: "X-Forwarded-Proto: https"
     ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   tls:
-  - secretName: admin-auto-secret
+  - secretName: iot-admin-auto-secret
     hosts:
     - {{.soa_gateway}}
   rules:
