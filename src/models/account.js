@@ -12,7 +12,7 @@ export default class AccountModel {
 
   /** 退出登录接口 POST /api/login/outLogin */
 
-  static async outLogin(options) {
+  static async outLogin(params,options) {
     return await new Model().fetch_post('/account-service/account/logout', params, options);
 }
 /** 登录接口 POST /api/login/account */

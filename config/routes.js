@@ -207,6 +207,7 @@ export default [
         path: '/docs/framework',
         name: 'docs-framework',
         icon: 'smile',
+        hideInMenu: 'true',
         component: './docs/framework-page',
       },
       
