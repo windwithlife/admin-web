@@ -98,8 +98,8 @@ const UpdateForm = (props) => {
         <ProFormSelect
           name="method"
           label={intl.formatMessage({
-            id: 'pages.table.titleDomain',
-            defaultMessage: '隔离域',
+            id: 'pages.permissionTable.titleMethod',
+            defaultMessage: 'Method',
           })}
           width="md"
           valueEnum={{

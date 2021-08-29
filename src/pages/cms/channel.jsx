@@ -7,7 +7,7 @@ import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import UpdateForm from './components/ChannelUpdate';
-import AccountModel from '@/models/account';
+import Model from '@/models/CMSChannelModel';
 
 /**
  * @en-US Add node
@@ -19,7 +19,7 @@ const handleAdd = async (fields) => {
   const hide = message.loading('正在添加');
 
   try {
-    await AccountModel.addRole({ ...fields });
+    await Model.addNew({ ...fields });
     hide();
     message.success('Added successfully');
     return true;
@@ -40,7 +40,7 @@ const handleUpdate = async (fields) => {
   const hide = message.loading('Configuring');
 
   try {
-    await AccountModel.updateRole({
+    await Model.update({
       name: fields.name,
       description: fields.description,
       domain: fields.domain,
@@ -67,7 +67,7 @@ const handleRemove = async (selectedRows) => {
   if (!selectedRows) return true;
 
   try {
-    await AccountModel.removeRoles({
+    await Model.removeBatch({
       ids: selectedRows.map((row) => row.key),
     });
     hide();
@@ -92,7 +92,7 @@ const handleRemoveRow = async (index) => {
   if (!index) return true;
 
   try {
-    await AccountModel.removeRole({
+    await Model.removeById({
       id: index,
     });
     hide();
@@ -104,8 +104,6 @@ const handleRemoveRow = async (index) => {
     return false;
   }
 };
-
-
 
 const TableList = () => {
   /**
@@ -137,12 +135,7 @@ const TableList = () => {
       valueType: 'textarea',
     },
     {
-      title: (
-        <FormattedMessage
-          id="pages.table.titleName"
-          defaultMessage="名称"
-        />
-      ),
+      title: <FormattedMessage id="pages.table.titleName" defaultMessage="名称" />,
       dataIndex: 'name',
       tip: 'The rule name is the unique key',
       render: (dom, entity) => {
@@ -164,12 +157,7 @@ const TableList = () => {
       valueType: 'textarea',
     },
     {
-      title: (
-        <FormattedMessage
-          id="pages.roleTable.titleDomain"
-          defaultMessage="域名"
-        />
-      ),
+      title: <FormattedMessage id="pages.roleTable.titleDomain" defaultMessage="域名" />,
       dataIndex: 'domain',
       sorter: true,
       hideInForm: true,
@@ -180,7 +168,6 @@ const TableList = () => {
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
-
         <a
           key="config"
           onClick={() => {
@@ -190,18 +177,22 @@ const TableList = () => {
         >
           <FormattedMessage id="pages.table.config" defaultMessage="配置修改" />
         </a>,
-        <Popconfirm 
-         key={'Remove-' + record.id}
-        title={intl.formatMessage({
-          id: 'pages.table.titleRemove',
-          defaultMessage: '删除',
-        })} onConfirm={() => {
-          handleRemoveRow(record.id);
-          actionRef.current?.reloadAndRest?.();
-        }} >
-          < a href="#" > <FormattedMessage id="pages.table.remove" defaultMessage="删除" /> </a>
+        <Popconfirm
+          key={'Remove-' + record.id}
+          title={intl.formatMessage({
+            id: 'pages.table.titleRemove',
+            defaultMessage: '删除',
+          })}
+          onConfirm={() => {
+            handleRemoveRow(record.id);
+            actionRef.current?.reloadAndRest?.();
+          }}
+        >
+          <a href="#">
+            {' '}
+            <FormattedMessage id="pages.table.remove" defaultMessage="删除" />{' '}
+          </a>
         </Popconfirm>,
-
       ],
     },
   ];
@@ -209,8 +200,8 @@ const TableList = () => {
     <PageContainer>
       <ProTable
         headerTitle={intl.formatMessage({
-          id: 'pages.roleTable.title',
-          defaultMessage: '平台角色',
+          id: 'pages.channelTable.title',
+          defaultMessage: '内容频道管理',
         })}
         actionRef={actionRef}
         rowKey="key"
@@ -228,7 +219,7 @@ const TableList = () => {
             <PlusOutlined /> <FormattedMessage id="pages.table.addNew" defaultMessage="New" />
           </Button>,
         ]}
-        request={AccountModel.queryAllRoles}
+        request={Model.queryAll}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => {
@@ -249,7 +240,6 @@ const TableList = () => {
                 {selectedRowsState.length}
               </a>{' '}
               <FormattedMessage id="pages.table.item" defaultMessage="项" />
-
             </div>
           }
         >
@@ -260,12 +250,8 @@ const TableList = () => {
               actionRef.current?.reloadAndRest?.();
             }}
           >
-            <FormattedMessage
-              id="pages.table.batchDeletion"
-              defaultMessage="Batch deletion"
-            />
+            <FormattedMessage id="pages.table.batchDeletion" defaultMessage="Batch deletion" />
           </Button>
-
         </FooterToolbar>
       )}
       <ModalForm
@@ -307,11 +293,14 @@ const TableList = () => {
           width="md"
           name="name"
         />
-        <ProFormTextArea width="md" name="description"
+        <ProFormTextArea
+          width="md"
+          name="description"
           label={intl.formatMessage({
             id: 'pages.table.titleDesc',
             defaultMessage: '描述',
-          })} />
+          })}
+        />
         <ProFormSelect
           name="domain"
           label={intl.formatMessage({
