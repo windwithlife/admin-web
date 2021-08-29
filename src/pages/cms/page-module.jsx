@@ -7,7 +7,7 @@ import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import UpdateForm from './components/PageModuleUpdateForm';
-import Model from '@/models/menu';
+import Model from '@/models/CMSPageModuleModel';
 
 /**
  * @en-US Add node
@@ -41,7 +41,7 @@ const handleUpdate = async (fields) => {
 
   try {
     await Model.update({
-   ...fields
+      ...fields,
     });
     hide();
     message.success('Configuration is successful');
@@ -102,8 +102,6 @@ const handleRemoveRow = async (index) => {
   }
 };
 
-
-
 const TableList = () => {
   /**
    * @en-US Pop-up window of new window
@@ -134,12 +132,7 @@ const TableList = () => {
       valueType: 'textarea',
     },
     {
-      title: (
-        <FormattedMessage
-          id="pages.table.titleName"
-          defaultMessage="名称"
-        />
-      ),
+      title: <FormattedMessage id="pages.table.titleName" defaultMessage="名称" />,
       dataIndex: 'name',
       tip: 'The rule name is the unique key',
       render: (dom, entity) => {
@@ -161,24 +154,14 @@ const TableList = () => {
       valueType: 'textarea',
     },
     {
-      title: (
-        <FormattedMessage
-          id="pages.permissionTable.titleUri"
-          defaultMessage="URI"
-        />
-      ),
+      title: <FormattedMessage id="pages.permissionTable.titleUri" defaultMessage="URI" />,
       dataIndex: 'uri',
       sorter: true,
       hideInForm: true,
     },
 
     {
-      title: (
-        <FormattedMessage
-          id="pages.permissionTable.titleMethod"
-          defaultMessage="METHOD"
-        />
-      ),
+      title: <FormattedMessage id="pages.permissionTable.titleMethod" defaultMessage="METHOD" />,
       dataIndex: 'method',
       sorter: true,
       hideInForm: true,
@@ -188,7 +171,6 @@ const TableList = () => {
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
-
         <a
           key="config"
           onClick={() => {
@@ -198,18 +180,22 @@ const TableList = () => {
         >
           <FormattedMessage id="pages.table.config" defaultMessage="配置修改" />
         </a>,
-        <Popconfirm 
-         key={'Remove-' + record.id}
-        title={intl.formatMessage({
-          id: 'pages.table.titleRemove',
-          defaultMessage: '删除',
-        })} onConfirm={() => {
-          handleRemoveRow(record.id);
-          actionRef.current?.reloadAndRest?.();
-        }} >
-          < a href="#" > <FormattedMessage id="pages.table.remove" defaultMessage="删除" /> </a>
+        <Popconfirm
+          key={'Remove-' + record.id}
+          title={intl.formatMessage({
+            id: 'pages.table.titleRemove',
+            defaultMessage: '删除',
+          })}
+          onConfirm={() => {
+            handleRemoveRow(record.id);
+            actionRef.current?.reloadAndRest?.();
+          }}
+        >
+          <a href="#">
+            {' '}
+            <FormattedMessage id="pages.table.remove" defaultMessage="删除" />{' '}
+          </a>
         </Popconfirm>,
-
       ],
     },
   ];
@@ -217,8 +203,8 @@ const TableList = () => {
     <PageContainer>
       <ProTable
         headerTitle={intl.formatMessage({
-          id: 'pages.permissionTable.title',
-          defaultMessage: '列表',
+          id: 'pages.pagemoduleTable.title',
+          defaultMessage: '页面模块管理',
         })}
         actionRef={actionRef}
         rowKey="key"
@@ -257,7 +243,6 @@ const TableList = () => {
                 {selectedRowsState.length}
               </a>{' '}
               <FormattedMessage id="pages.table.item" defaultMessage="项" />
-
             </div>
           }
         >
@@ -268,12 +253,8 @@ const TableList = () => {
               actionRef.current?.reloadAndRest?.();
             }}
           >
-            <FormattedMessage
-              id="pages.table.batchDeletion"
-              defaultMessage="Batch deletion"
-            />
+            <FormattedMessage id="pages.table.batchDeletion" defaultMessage="Batch deletion" />
           </Button>
-
         </FooterToolbar>
       )}
       <ModalForm
@@ -315,11 +296,14 @@ const TableList = () => {
           width="md"
           name="name"
         />
-        <ProFormTextArea width="md" name="description"
+        <ProFormTextArea
+          width="md"
+          name="description"
           label={intl.formatMessage({
             id: 'pages.table.titleDesc',
             defaultMessage: '描述',
-          })} />
+          })}
+        />
         <ProFormSelect
           name="domain"
           label={intl.formatMessage({
