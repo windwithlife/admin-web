@@ -302,6 +302,13 @@ export function getRoutes() {
         "icon": "smile",
         "routes": [
           {
+            "path": "/cms/category",
+            "name": "category",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__category' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/category'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
             "path": "/cms/channel",
             "name": "channel",
             "icon": "smile",
@@ -334,14 +341,6 @@ export function getRoutes() {
             "name": "rich-text",
             "icon": "smile",
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__rich-text' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/rich-text'), loading: LoadingComponent}),
-            "exact": true
-          },
-          {
-            "path": "/cms/addNewRichText",
-            "name": "rich-text-new",
-            "icon": "smile",
-            "hideInMenu": "true",
-            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__richtext__NewRichText' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/richtext/NewRichText'), loading: LoadingComponent}),
             "exact": true
           },
           {

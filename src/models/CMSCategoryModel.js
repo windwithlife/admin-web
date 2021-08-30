@@ -25,9 +25,26 @@ export default class DefaultModel {
     let items = result.data.items;
     items.forEach((element) => {
       element.key = element.id;
+      if(!element.hasChildren){
+        element.childInfo = '暂无子类别';
+      }
     });
     return { data: result.data.items };
   }
+
+  static async queryAllOptions(options) {
+    let result = await new Model().fetch_get('/common-service/category/queryAll', {}, options);
+    let items = result.data.items;
+    items.forEach((element) => {
+      element.key = element.value = element.id;
+      element.label= element.name;
+      if(element.hasOwnProperty("parentId")){delete element.parentId;}
+      
+    });
+    console.log(items);
+    return items;
+  }
+
   static async queryByParams(params, options) {
     return await new Model().fetch_get('/common-service/category/queryAll', params, options);
   }

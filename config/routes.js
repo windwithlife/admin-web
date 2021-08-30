@@ -105,6 +105,12 @@ export default [
     icon: 'smile',
     routes: [
       {
+        path: '/cms/category',
+        name: 'category',
+        icon: 'smile',
+        component: './cms/category',
+      },
+      {
         path: '/cms/channel',
         name: 'channel',
         icon: 'smile',
@@ -135,13 +141,13 @@ export default [
         icon: 'smile',
         component: './cms/rich-text',
       },
-      {
-        path: '/cms/addNewRichText',
-        name: 'rich-text-new',
-        icon: 'smile',
-        hideInMenu: 'true',
-        component: './cms/richtext/NewRichText',
-      },
+      // {
+      //   path: '/cms/addNewRichText',
+      //   name: 'rich-text-new',
+      //   icon: 'smile',
+      //   hideInMenu: 'true',
+      //   component: './cms/richtext/NewRichText',
+      // },
       
       {
         component: './404',

@@ -2,11 +2,13 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, message, Popconfirm, Drawer } from 'antd';
 import React, { useState, useRef } from 'react';
 import { useIntl, FormattedMessage } from 'umi';
+import { history, Link } from 'umi';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
-import UpdateForm from './components/ImageTextUpdateForm';
+import UpdateForm from './components/RichTextUpdateForm';
+import AddNewForm from './components/ImageTextAddForm';
 import Model from '@/models/CMSImageTextModel';
 
 /**
@@ -154,18 +156,13 @@ const TableList = () => {
       valueType: 'textarea',
     },
     {
-      title: <FormattedMessage id="pages.permissionTable.titleUri" defaultMessage="URI" />,
-      dataIndex: 'uri',
+      title: <FormattedMessage id="pages.richtextTable.titleUri" defaultMessage="标题" />,
+      dataIndex: 'title',
       sorter: true,
       hideInForm: true,
     },
 
-    {
-      title: <FormattedMessage id="pages.permissionTable.titleMethod" defaultMessage="METHOD" />,
-      dataIndex: 'method',
-      sorter: true,
-      hideInForm: true,
-    },
+    
     {
       title: <FormattedMessage id="pages.table.titleOperation" defaultMessage="Operating" />,
       dataIndex: 'option',
@@ -204,7 +201,7 @@ const TableList = () => {
       <ProTable
         headerTitle={intl.formatMessage({
           id: 'pages.imagetextTable.title',
-          defaultMessage: '图文信息管理',
+          defaultMessage: '图文本内容列表',
         })}
         actionRef={actionRef}
         rowKey="key"
@@ -216,6 +213,9 @@ const TableList = () => {
             type="primary"
             key="primary"
             onClick={() => {
+              // handleModalVisible(true);
+              //let addNewPath = '/cms/addNewRichText';
+              //history.push({ pathname: addNewPath, query: { id: 35 } });
               handleModalVisible(true);
             }}
           >
@@ -257,15 +257,9 @@ const TableList = () => {
           </Button>
         </FooterToolbar>
       )}
-      <ModalForm
-        title={intl.formatMessage({
-          id: 'pages.table.addNew',
-          defaultMessage: '新增',
-        })}
-        width="400px"
-        visible={createModalVisible}
-        onVisibleChange={handleModalVisible}
-        onFinish={async (value) => {
+     
+      <AddNewForm
+        onSubmit={async (value) => {
           const success = await handleAdd(value);
 
           if (success) {
@@ -276,47 +270,16 @@ const TableList = () => {
             }
           }
         }}
-      >
-        <ProFormText
-          label={intl.formatMessage({
-            id: 'pages.roleTable.titleName',
-            defaultMessage: '角色名称',
-          })}
-          rules={[
-            {
-              required: true,
-              message: (
-                <FormattedMessage
-                  id="pages.roleTable.titleName"
-                  defaultMessage="Role name is required"
-                />
-              ),
-            },
-          ]}
-          width="md"
-          name="name"
-        />
-        <ProFormTextArea
-          width="md"
-          name="description"
-          label={intl.formatMessage({
-            id: 'pages.table.titleDesc',
-            defaultMessage: '描述',
-          })}
-        />
-        <ProFormSelect
-          name="domain"
-          label={intl.formatMessage({
-            id: 'pages.roleTable.titleDomain',
-            defaultMessage: '隔离域',
-          })}
-          width="md"
-          valueEnum={{
-            month: '测试',
-            week: 'B测试域',
-          }}
-        />
-      </ModalForm>
+        onCancel={() => {
+          handleModalVisible(false);
+
+          // if (!showDetail) {
+          //   setCurrentRow(undefined);
+          // }
+        }}
+        createModalVisible={createModalVisible}
+        
+      />
       <UpdateForm
         onSubmit={async (value) => {
           const success = await handleUpdate(value);

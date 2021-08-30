@@ -21,7 +21,13 @@ export default class DefaultModel {
     return await new Model().fetch_post('/common-service/richtext/addNew', params, options);
   }
   static async queryAll(options) {
-    return await new Model().fetch_get('/common-service/richtext/queryAll', {}, options);
+    let result =  await new Model().fetch_get('/common-service/richtext/queryAll', {}, options);
+    console.log(result);
+    let items = result.data.items;
+    items.forEach((element) => {
+      element.key = element.id;
+    });
+    return { data: result.data.items };
   }
   static async queryByParams(params, options) {
     return await new Model().fetch_get('/common-service/richtext/queryAll', params, options);

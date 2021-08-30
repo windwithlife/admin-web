@@ -8,7 +8,7 @@ import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import UpdateForm from './components/RichTextUpdateForm';
-import NewForm from './richtext/NewRichText';
+import AddNewForm from './components/RichTextAddForm';
 import Model from '@/models/CMSRichTextModel';
 
 /**
@@ -133,41 +133,20 @@ const TableList = () => {
       dataIndex: 'id',
       valueType: 'textarea',
     },
+    
+    
     {
-      title: <FormattedMessage id="pages.table.titleName" defaultMessage="名称" />,
-      dataIndex: 'name',
-      tip: 'The rule name is the unique key',
-      render: (dom, entity) => {
-        return (
-          <a
-            onClick={() => {
-              setCurrentRow(entity);
-              setShowDetail(true);
-            }}
-          >
-            {dom}
-          </a>
-        );
-      },
+      title: <FormattedMessage id="pages.richtextTable.titleUri" defaultMessage="标题" />,
+      dataIndex: 'title',
+      sorter: true,
+      hideInForm: true,
     },
     {
       title: <FormattedMessage id="pages.table.titleDesc" defaultMessage="描述说明" />,
       dataIndex: 'description',
       valueType: 'textarea',
     },
-    {
-      title: <FormattedMessage id="pages.permissionTable.titleUri" defaultMessage="URI" />,
-      dataIndex: 'uri',
-      sorter: true,
-      hideInForm: true,
-    },
-
-    {
-      title: <FormattedMessage id="pages.permissionTable.titleMethod" defaultMessage="METHOD" />,
-      dataIndex: 'method',
-      sorter: true,
-      hideInForm: true,
-    },
+    
     {
       title: <FormattedMessage id="pages.table.titleOperation" defaultMessage="Operating" />,
       dataIndex: 'option',
@@ -219,8 +198,9 @@ const TableList = () => {
             key="primary"
             onClick={() => {
               // handleModalVisible(true);
-              let addNewPath = '/cms/addNewRichText';
-              history.push({ pathname: addNewPath, query: { id: 35 } });
+              //let addNewPath = '/cms/addNewRichText';
+              //history.push({ pathname: addNewPath, query: { id: 35 } });
+              handleModalVisible(true);
             }}
           >
             <PlusOutlined /> <FormattedMessage id="pages.table.addNew" defaultMessage="New" />
@@ -261,15 +241,9 @@ const TableList = () => {
           </Button>
         </FooterToolbar>
       )}
-      <ModalForm
-        title={intl.formatMessage({
-          id: 'pages.table.addNew',
-          defaultMessage: '新增',
-        })}
-        // width="400px"
-        visible={createModalVisible}
-        onVisibleChange={handleModalVisible}
-        onFinish={async (value) => {
+     
+      <AddNewForm
+        onSubmit={async (value) => {
           const success = await handleAdd(value);
 
           if (success) {
@@ -280,9 +254,16 @@ const TableList = () => {
             }
           }
         }}
-      >
-        <NewForm></NewForm>
-      </ModalForm>
+        onCancel={() => {
+          handleModalVisible(false);
+
+          // if (!showDetail) {
+          //   setCurrentRow(undefined);
+          // }
+        }}
+        createModalVisible={createModalVisible}
+        
+      />
       <UpdateForm
         onSubmit={async (value) => {
           const success = await handleUpdate(value);

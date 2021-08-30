@@ -6,7 +6,7 @@ import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import ProTable from '@ant-design/pro-table';
 import { ModalForm, ProFormText, ProFormTextArea, ProFormSelect } from '@ant-design/pro-form';
 import ProDescriptions from '@ant-design/pro-descriptions';
-import UpdateForm from './components/CategoryUpdateForm';
+import UpdateForm from './components/ChannelUpdate';
 import Model from '@/models/CMSCategoryModel';
 
 /**
@@ -41,7 +41,10 @@ const handleUpdate = async (fields) => {
 
   try {
     await Model.update({
-      ...fields,
+      name: fields.name,
+      description: fields.description,
+      domain: fields.domain,
+      key: fields.key,
     });
     hide();
     message.success('Configuration is successful');
@@ -149,9 +152,32 @@ const TableList = () => {
       },
     },
     {
+      title: <FormattedMessage id="pages.channelTable.titleChildren" defaultMessage="子频道" />,
+      dataIndex: 'childInfo',
+      tip: 'The children of the current channel',
+      render: (dom, entity) => {
+        return (
+          <a
+            onClick={() => {
+              setCurrentRow(entity);
+              setShowDetail(true);
+            }}
+          >
+            {dom}
+          </a>
+        );
+      },
+    },
+    {
       title: <FormattedMessage id="pages.table.titleDesc" defaultMessage="描述说明" />,
       dataIndex: 'description',
       valueType: 'textarea',
+    },
+    {
+      title: <FormattedMessage id="pages.roleTable.titleDomain" defaultMessage="域名" />,
+      dataIndex: 'domain',
+      sorter: true,
+      hideInForm: true,
     },
 
     {
@@ -191,8 +217,8 @@ const TableList = () => {
     <PageContainer>
       <ProTable
         headerTitle={intl.formatMessage({
-          id: 'pages.categoryTable.title',
-          defaultMessage: '内容信息分类',
+          id: 'pages.channelTable.title',
+          defaultMessage: '内容频道管理',
         })}
         actionRef={actionRef}
         rowKey="key"
@@ -276,7 +302,7 @@ const TableList = () => {
               message: (
                 <FormattedMessage
                   id="pages.table.titleName"
-                  defaultMessage="Role name is required"
+                  defaultMessage="Name is required"
                 />
               ),
             },
@@ -294,14 +320,15 @@ const TableList = () => {
         />
         <ProFormSelect
           name="domain"
+          defaultValue='default'
           label={intl.formatMessage({
-            id: 'pages.roleTable.titleDomain',
+            id: 'pages.table.titleDomain',
             defaultMessage: '隔离域',
           })}
           width="md"
           valueEnum={{
             default: '缺省',
-            test: '测试域',
+            test: '测试',
           }}
         />
       </ModalForm>

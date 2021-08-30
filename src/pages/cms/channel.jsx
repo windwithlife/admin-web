@@ -152,6 +152,23 @@ const TableList = () => {
       },
     },
     {
+      title: <FormattedMessage id="pages.categoryTable.titleChildren" defaultMessage="子类别" />,
+      dataIndex: 'childInfo',
+      tip: 'The children of the current channel',
+      render: (dom, entity) => {
+        return (
+          <a
+            onClick={() => {
+              setCurrentRow(entity);
+              setShowDetail(true);
+            }}
+          >
+            {dom}
+          </a>
+        );
+      },
+    },
+    {
       title: <FormattedMessage id="pages.table.titleDesc" defaultMessage="描述说明" />,
       dataIndex: 'description',
       valueType: 'textarea',
@@ -200,8 +217,8 @@ const TableList = () => {
     <PageContainer>
       <ProTable
         headerTitle={intl.formatMessage({
-          id: 'pages.channelTable.title',
-          defaultMessage: '内容频道管理',
+          id: 'pages.categoryTable.title',
+          defaultMessage: '内容分类管理',
         })}
         actionRef={actionRef}
         rowKey="key"
@@ -276,16 +293,16 @@ const TableList = () => {
       >
         <ProFormText
           label={intl.formatMessage({
-            id: 'pages.roleTable.titleName',
-            defaultMessage: '角色名称',
+            id: 'pages.table.titleName',
+            defaultMessage: '名称',
           })}
           rules={[
             {
               required: true,
               message: (
                 <FormattedMessage
-                  id="pages.roleTable.titleName"
-                  defaultMessage="Role name is required"
+                  id="pages.table.titleName"
+                  defaultMessage="Name is required"
                 />
               ),
             },
@@ -303,14 +320,15 @@ const TableList = () => {
         />
         <ProFormSelect
           name="domain"
+          defaultValue='default'
           label={intl.formatMessage({
-            id: 'pages.roleTable.titleDomain',
+            id: 'pages.table.titleDomain',
             defaultMessage: '隔离域',
           })}
           width="md"
           valueEnum={{
-            month: '测试',
-            week: 'B测试域',
+            default: '缺省',
+            test: '测试',
           }}
         />
       </ModalForm>

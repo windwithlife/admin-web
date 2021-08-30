@@ -249,16 +249,7 @@ const TableList = () => {
               >
                 {selectedRowsState.length}
               </a>{' '}
-              <FormattedMessage id="pages.searchTable.item" defaultMessage="项" />
-              &nbsp;&nbsp;
-              <span>
-                <FormattedMessage
-                  id="pages.searchTable.totalServiceCalls"
-                  defaultMessage="Total number of service calls"
-                />{' '}
-                {selectedRowsState.reduce((pre, item) => pre + item.callNo, 0)}{' '}
-                <FormattedMessage id="pages.searchTable.tenThousand" defaultMessage="万" />
-              </span>
+              <FormattedMessage id="pages.table.titleItem" defaultMessage="项" />
             </div>
           }
         >
@@ -270,14 +261,8 @@ const TableList = () => {
             }}
           >
             <FormattedMessage
-              id="pages.searchTable.batchDeletion"
-              defaultMessage="Batch deletion"
-            />
-          </Button>
-          <Button type="primary">
-            <FormattedMessage
-              id="pages.searchTable.batchApproval"
-              defaultMessage="Batch approval"
+              id="pages.table.batchDeletion"
+              defaultMessage="Batch deletion alert?"
             />
           </Button>
         </FooterToolbar>
