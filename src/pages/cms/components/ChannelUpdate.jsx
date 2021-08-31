@@ -120,8 +120,8 @@ const UpdateForm = (props) => {
           })}
           width="md"
           valueEnum={{
-            month: '测试',
-            week: 'B测试域',
+            default: '缺省域',
+            test: '测试域',
           }}
         />
       </StepsForm.StepForm>

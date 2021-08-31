@@ -138,10 +138,10 @@ steps:
     settings:
       dockerfile: ./release/smart-iot/Dockerfile
       use_cache: true
-      repo: registry.cn-hangzhou.aliyuncs.com/windwithlife/admin-web-iot
-      registry: https://registry.cn-hangzhou.aliyuncs.com
+      repo: ccr.ccs.tencentyun.com/windwithlife/admin-web-iot
+      registry: https://ccr.ccs.tencentyun.com
       mirror: https://89cgb0wn.mirror.aliyuncs.com
-      username: 379163259@qq.com
+      username: 100008098144
       password: password7&
       # 更多变量参考https://docs.drone.io/pipeline/environment/reference/
       tags:
@@ -153,11 +153,11 @@ steps:
     settings:
       yaml: ./release/smart-iot/deployment.yaml
       kubeconfig:
-        from_secret: kubeconfig
+        from_secret: kubeconfig-iot
       app_name: admin-web
-      image_name: registry.cn-hangzhou.aliyuncs.com/windwithlife/admin-web-iot
+      image_name: ccr.ccs.tencentyun.com/windwithlife/admin-web-iot
       soa_gateway: admin.koudaibook.com
-      soa_gateway_cert: admin-auto-secret
+      soa_gateway_cert: admin-default-secret
       path_name: /admin-web
       build_tag: build-${DRONE_BUILD_NUMBER}
 

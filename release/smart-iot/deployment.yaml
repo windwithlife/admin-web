@@ -48,10 +48,8 @@ kind: Ingress
 metadata:
   name: ingress-{{.app_name}}
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    ingress.kubernetes.io/ssl-proxy-headers: "X-Forwarded-Proto: https"
-    ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt"
+    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/custom-response-headers: "Access-Control-Allow-Origin:*||Access-Control-Allow-Methods:GET,POST,OPTIONS||Access-Control-Allow-Headers:DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,token||Access-Control-Expose-Headers:Content-Length,Content-Range,token" 
 spec:
   tls:
   - secretName: {{.soa_gateway_cert}}
@@ -64,6 +62,8 @@ spec:
           - path: {{.path_name}}
             pathType: Prefix
             backend:
-              serviceName: service-{{.app_name}}
-              servicePort: 80
+              service:
+                name: service-{{.app_name}}
+                port:
+                  number: 80
               
