@@ -61,6 +61,14 @@ export const layout = ({ initialState }) => {
         history.push(loginPath);
       }
     },
+    links: [
+          
+          <a href="https://traefik.koudaibook.com/dashboard/">
+            <BookOutlined />
+            <span>平台集群路由及流量监控</span>
+          </a>,
+        ]
+      ,
     // links: isDev
     //   ? [
           

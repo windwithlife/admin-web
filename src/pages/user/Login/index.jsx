@@ -50,7 +50,7 @@ const Login = () => {
 
     try {
       // 登录
-      const msg = await login({ ...values, type });
+      const msg = await login({ ...values, type:0,loginType: type });
       console.log('Login result ===>');
       console.log(msg);
       if (msg.status.message === 'SUCCESS') {

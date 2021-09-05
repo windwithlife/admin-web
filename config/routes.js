@@ -141,13 +141,12 @@ export default [
         icon: 'smile',
         component: './cms/rich-text',
       },
-      // {
-      //   path: '/cms/addNewRichText',
-      //   name: 'rich-text-new',
-      //   icon: 'smile',
-      //   hideInMenu: 'true',
-      //   component: './cms/richtext/NewRichText',
-      // },
+      {
+        path: '/cms/todo',
+        name: 'todo',
+        icon: 'smile',
+        component: './cms/todo',
+      },
       
       {
         component: './404',

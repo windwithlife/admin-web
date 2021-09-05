@@ -18,7 +18,7 @@ steps:
   - name: 构建镜像&PUSH镜像到Hub（PROD）.
     image: plugins/docker
     settings:
-      dockerfile: ./release/prod/Dockerfile
+      dockerfile: ./release/Dockerfile
       use_cache: true
       repo: ccr.ccs.tencentyun.com/windwithlife/admin-web
       registry: https://ccr.ccs.tencentyun.com
@@ -33,7 +33,7 @@ steps:
   - name: 部署到K3s集群(PROD)
     image: bh90210/dron8s:latest
     settings:
-      yaml: ./release/prod/deployment.yaml
+      yaml: ./release/deployment.yaml
       kubeconfig:
         from_secret: kubeconfig
       app_name: admin-web
@@ -76,7 +76,7 @@ steps:
   - name: 构建镜像&PUSH镜像到Hub(UAT).
     image: plugins/docker
     settings:
-      dockerfile: ./release/uat/Dockerfile
+      dockerfile: ./release/Dockerfile
       use_cache: true
       repo: ccr.ccs.tencentyun.com/windwithlife/admin-web
       registry: https://ccr.ccs.tencentyun.com/
@@ -92,7 +92,7 @@ steps:
   - name: 部署到K3S集群-(UAT)
     image: bh90210/dron8s:latest
     settings:
-      yaml: ./release/uat/deployment.yaml
+      yaml: ./release/deployment.yaml
       kubeconfig:
         from_secret: kubeconfig
       app_name: admin-web
@@ -136,7 +136,7 @@ steps:
   - name: 构建镜像&PUSH镜像到Hub.
     image: plugins/docker
     settings:
-      dockerfile: ./release/smart-iot/Dockerfile
+      dockerfile: ./release/Dockerfile
       use_cache: true
       repo: ccr.ccs.tencentyun.com/windwithlife/admin-web-iot
       registry: https://ccr.ccs.tencentyun.com
@@ -151,7 +151,7 @@ steps:
   - name: 部署到集群-dron8s方式(PROD)
     image: bh90210/dron8s:latest
     settings:
-      yaml: ./release/smart-iot/deployment.yaml
+      yaml: ./release/deployment.yaml
       kubeconfig:
         from_secret: kubeconfig-iot
       app_name: admin-web

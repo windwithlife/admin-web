@@ -344,6 +344,13 @@ export function getRoutes() {
             "exact": true
           },
           {
+            "path": "/cms/todo",
+            "name": "todo",
+            "icon": "smile",
+            "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__cms__todo' */'/Users/ctrip/code/iot/admin-web/src/pages/cms/todo'), loading: LoadingComponent}),
+            "exact": true
+          },
+          {
             "component": dynamic({ loader: () => import(/* webpackChunkName: 'p__404' */'/Users/ctrip/code/iot/admin-web/src/pages/404'), loading: LoadingComponent}),
             "exact": true
           }
