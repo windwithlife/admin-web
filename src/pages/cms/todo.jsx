@@ -146,7 +146,16 @@ const TableList = () => {
       dataIndex: 'description',
       valueType: 'textarea',
     },
-    
+    {
+      title: <FormattedMessage id="pages.todoTable.titleStartTime" defaultMessage="开始时间" />,
+      dataIndex: 'startTime',
+      valueType: 'textarea',
+    },
+    {
+      title: <FormattedMessage id="pages.todoTable.titleEndTime" defaultMessage="结束时间" />,
+      dataIndex: 'endTime',
+      valueType: 'textarea',
+    },
     {
       title: <FormattedMessage id="pages.table.titleOperation" defaultMessage="Operating" />,
       dataIndex: 'option',

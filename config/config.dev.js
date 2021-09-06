@@ -2,8 +2,8 @@
 import { defineConfig } from 'umi';
 export default defineConfig({
   define: {
-    //API_URL: 'http://localhost:5388', // API地址
-    API_URL: 'https://api.koudaibook.com', // API地址
+    API_URL: 'http://localhost:5389', // API地址
+    //API_URL: 'https://api.koudaibook.com', // API地址
     BASE_PATH: '/admin-web', // API 服务PATH
   },
   plugins: [

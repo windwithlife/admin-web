@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Modal, message, Divider, Alert } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
-import ProForm, { ProFormDigit, ProFormSelect, ProFormText, ProFormTextArea, StepsForm } from '@ant-design/pro-form';
+import ProForm, { ProFormDigit, ProFormSelect, ProFormText, ProFormTextArea, ProFormDateTimePicker, StepsForm } from '@ant-design/pro-form';
 import ReactWEditor from 'wangeditor-for-react';
 import styles from './style.less';
 import Model from '@/models/CMSRichTextModel';
@@ -41,48 +41,82 @@ const AddNewForm = (props) => {
       }}
       onFinish={props.onSubmit}
     >
-     <StepsForm.StepForm title="填写文本内容">
-            <div >
-              <ProFormText
-                label="任务标题"
-                width="md"
-                name="title"
-                required={false}
-                rules={[
-                  {
-                    required: true,
-                    message: '需要一个标题',
-                  },
-                ]}
-              />
-              <ProFormSelect
-              label="信息所属类目"
-              width="md"
-              name="categoryId"
-              request={CategoryModel.queryAllOptions}
+      <StepsForm.StepForm title="填写文本内容">
+        <div >
+          <ProFormSelect
+            name="frequency"
+            label={intl.formatMessage({
+              id: 'pages.todoTable.titleTaskType',
+              defaultMessage: '任务类型',
+            })}
+            width="md"
+            request={CategoryModel.queryAllOptions}
 
-            />
-               <ProFormTextArea
-              label="简单描述"
-              width="md"
-              name="description"
-              placeholder="请输入描述内容"
-            />
+          />
+          <ProFormText
+            label="任务标题"
+            width="md"
+            name="title"
+            required={false}
+            rules={[
+              {
+                required: true,
+                message: '需要一个标题',
+              },
+            ]}
+          />
+         
+          <ProFormTextArea
+            label="简单描述"
+            width="md"
+            name="description"
+            placeholder="请输入描述内容"
+          />
 
-              <Divider
-                style={{
-                  margin: '24px 0',
-                }}
-              />
-
-              
+          <Divider
+            style={{
+              margin: '24px 0',
+            }}
+          />
 
 
-            </div>
-          </StepsForm.StepForm>
+
+
+        </div>
+      </StepsForm.StepForm>
+      <StepsForm.StepForm
+        initialValues={{
+          type: '1',
+          frequency: 'month',
+        }}
+        title={intl.formatMessage({
+          id: 'pages.todoTable.titleTimes',
+          defaultMessage: '设定任务周期',
+        })}
+      >
+        <ProFormDateTimePicker
+          name="startTime"
+          width="md"
+          label={intl.formatMessage({
+            id: 'pages.searchTable.updateForm.schedulingPeriod.timeLabel',
+            defaultMessage: '开始时间',
+          })}
           
+        />
+
+        <ProFormDateTimePicker
+          name="endTime"
+          width="md"
+          label={intl.formatMessage({
+            id: 'pages.todoTable.titleEndTime',
+            defaultMessage: '结束时间',
+          })}
           
-        </StepsForm>
+        />
+
+      </StepsForm.StepForm>
+
+    </StepsForm>
   );
 };
 
