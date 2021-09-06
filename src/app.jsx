@@ -25,7 +25,7 @@ export async function getInitialState() {
       return msg.data;
     } catch (error) {
       console.log("get current user exception");
-      //history.push(loginPath);
+      history.push(loginPath);
     }
 
     return undefined;
@@ -58,7 +58,7 @@ export const layout = ({ initialState }) => {
       const { location } = history; // 如果没有登录，重定向到 login
 
       if (!initialState?.currentUser && location.pathname !== loginPath) {
-        //history.push(loginPath);
+        history.push(loginPath);
       }
     },
     links: [
