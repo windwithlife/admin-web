@@ -46,6 +46,8 @@ export async function getInitialState() {
   };
 } // ProLayout 支持的api https://procomponents.ant.design/components/layout
 
+
+
 export const layout = ({ initialState }) => {
   return {
     rightContentRender: () => <RightContent />,
