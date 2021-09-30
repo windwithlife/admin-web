@@ -77,6 +77,7 @@ const AvatarDropdown = ({ menu }) => {
   const { currentUser } = initialState;
 
   if (!currentUser || !currentUser.token) {
+    //return(<span className={`${styles.name} anticon`}>未登录</span>)
     return loading;
   }
 
@@ -105,7 +106,12 @@ const AvatarDropdown = ({ menu }) => {
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
-        <Avatar size="small" className={styles.avatar} src={getAvatarURL(currentUser)} alt="avatar" />
+        <Avatar
+          size="small"
+          className={styles.avatar}
+          src={getAvatarURL(currentUser)}
+          alt="avatar"
+        />
         <span className={`${styles.name} anticon`}>{currentUser.name}</span>
       </span>
     </HeaderDropdown>

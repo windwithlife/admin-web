@@ -24,8 +24,8 @@ export async function getInitialState() {
       const msg = await queryCurrentUser();
       return msg.data;
     } catch (error) {
-      console.log("get current user exception");
-      //history.push(loginPath);
+      console.log('get current user exception');
+      history.push(loginPath);
     }
 
     return undefined;
@@ -58,20 +58,18 @@ export const layout = ({ initialState }) => {
       const { location } = history; // 如果没有登录，重定向到 login
 
       if (!initialState?.currentUser && location.pathname !== loginPath) {
-        //history.push(loginPath);
+        history.push(loginPath);
       }
     },
     links: [
-          
-          <a href="https://traefik.koudaibook.com/dashboard/">
-            <BookOutlined />
-            <span>平台集群路由及流量监控</span>
-          </a>,
-        ]
-      ,
+      <a href="https://traefik.koudaibook.com/dashboard/">
+        <BookOutlined />
+        <span>平台集群路由及流量监控</span>
+      </a>,
+    ],
     // links: isDev
     //   ? [
-          
+
     //       <Link to="/index.html">
     //         <BookOutlined />
     //         <span>当前业务组件文档</span>
